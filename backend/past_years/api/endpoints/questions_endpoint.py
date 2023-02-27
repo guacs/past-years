@@ -12,6 +12,7 @@ class QuestionsEndpoint:
     _SUBJECTS = "subjects"
     _YEARS = "years"
     _QUERY = "q"
+    _RANDOM_QUESTIONS_LIMIT = 5
 
     def __init__(self, search_engine: QuestionSearchEngine):
 
@@ -23,6 +24,18 @@ class QuestionsEndpoint:
         filter = self._get_filter_object(req)
         resp.media = self._search_engine.search(filter)
         resp.content_type = req.get_accepted_content_type()
+
+    def on_get_random(self, req: Request, resp: Response):
+        """Handles all requests for getting random questions."""
+
+        filter = self._get_filter_object(req)
+        resp.media = self._search_engine.random(filter, self._RANDOM_QUESTIONS_LIMIT)
+        resp.content_type = req.get_accepted_content_type()
+
+    def on_get_metadata(self, req: Request, resp: Response):
+        """Handles requests for getting the metadata of the questions."""
+
+        resp.media = self._search_engine.questions_metadata()
 
     def _get_filter_object(self, req: Request) -> Filter:
         """Returns the filter object parsed from the request query string.

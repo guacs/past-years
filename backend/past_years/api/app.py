@@ -21,6 +21,8 @@ def make_app() -> App:
 
     # Adding routes
     app.add_route("/questions", questions_endpoint)
+    app.add_route("/questions/random", questions_endpoint, suffix="random")
+    app.add_route("/questions/metadata", questions_endpoint, suffix="metadata")
 
     # Adding handlers
     extra_media_handlers = {MEDIA_MSGPACK: MsgPackHandler(), MEDIA_JSON: JSONHandler()}
