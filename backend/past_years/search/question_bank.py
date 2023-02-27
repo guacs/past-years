@@ -5,7 +5,15 @@ from typing import Iterable, Iterator, Protocol
 
 import msgspec
 
-from .search_types import Question, Filter, QuestionsIndex, QuestionsMetadata
+from .search_types import (
+    Exam,
+    Question,
+    Filter,
+    QuestionsIndex,
+    QuestionsMetadata,
+    Subject,
+)
+from loguru import logger
 
 
 class QuestionBankProtocol(Protocol):
@@ -62,9 +70,12 @@ class QuestionBank(QuestionBankProtocol):
 
         questions_fp, idx_fp = Path(questions_fp), Path(questions_idx)
 
-        self._questions = QuestionBank.load_questions(questions_fp)
-        self._idx = msgspec.json.decode(idx_fp.read_bytes(), type=QuestionsIndex)
         self._metadata: QuestionsMetadata | None = None
+        self._questions = QuestionBank.load_questions(questions_fp)
+        self._all_ids: set[str] = set(self._questions.keys())
+
+        logger.debug(f"Loading index from `{idx_fp}`")
+        self._idx = msgspec.json.decode(idx_fp.read_bytes(), type=QuestionsIndex)
 
     @property
     def metadata(self) -> QuestionsMetadata:
@@ -87,7 +98,46 @@ class QuestionBank(QuestionBankProtocol):
         return filter(lambda q: q.id in ids, iter(self))
 
     def filter(self, filter_obj: Filter) -> set[str]:
-        raise NotImplementedError()
+
+        logger.debug(f"Filter with filter: {filter_obj}")
+
+        filtered_ids: set[str] = self._all_ids
+        if filter_obj.exams:
+            exam_ids = self._filter_by_exams(filter_obj.exams)
+            filtered_ids = filtered_ids.intersection(exam_ids)
+        if filter_obj.subjects:
+            subject_ids = self._filter_by_subjects(filter_obj.subjects)
+            filtered_ids = filtered_ids.intersection(subject_ids)
+        if filter_obj.years:
+            year_ids = self._filter_by_year(filter_obj.years)
+            filtered_ids = filtered_ids.intersection(year_ids)
+
+        return filtered_ids
+
+    # ----- Private Methods -----
+    def _filter_by_exams(self, exams: Iterable[Exam]) -> set[str]:
+        logger.trace(f"Filter by exams: {exams}")
+
+        all_exams: set[str] = set()
+        for exam in exams:
+            all_exams |= self._idx.exams[exam]
+        return all_exams
+
+    def _filter_by_subjects(self, subjects: Iterable[Subject]) -> set[str]:
+        logger.trace(f"Filter by subjects: {subjects}")
+
+        all_subjects: set[str] = set()
+        for subject in subjects:
+            all_subjects |= self._idx.subjects[subject]
+        return all_subjects
+
+    def _filter_by_year(self, years: Iterable[int]) -> set[str]:
+        logger.trace(f"Filter by years: {years}")
+
+        all_years: set[str] = set()
+        for year in years:
+            all_years |= self._idx.years[year]
+        return all_years
 
     # ----- Static Methods -----
     @staticmethod
@@ -98,16 +148,22 @@ class QuestionBank(QuestionBankProtocol):
             questions_fp: The path to the file/directory with the
                 questions.
         """
+
+        logger.debug(f"Loading questions from `{questions_fp}`")
+
         questions: list[Question] = []
         if questions_fp.is_file():
             file_bytes = questions_fp.read_bytes()
             fp_questions = msgspec.json.decode(file_bytes, type=list[Question])
             questions.extend(fp_questions)
+        else:
+            for fp in questions_fp.rglob("*.json"):
 
-        for fp in questions_fp.rglob("*.json"):
-            file_bytes = fp.read_bytes()
-            fp_questions = msgspec.json.decode(file_bytes, type=list[Question])
-            questions.extend(fp_questions)
+                logger.trace(f"Loading questions from `{fp}`")
+
+                file_bytes = fp.read_bytes()
+                fp_questions = msgspec.json.decode(file_bytes, type=list[Question])
+                questions.extend(fp_questions)
 
         return {q.id: q for q in questions}
 

@@ -5,16 +5,16 @@ mode = "dev"
 
 # Questions related configurations
 [dev.questions]
-whoosh_index_dir = "/home/guacs/projects/past-years/backend/sample/dev/whoosh_index"
+whoosh_index_dir = "./sample/dev/whoosh_index"
 whoosh_questions_index_name = "questions"
-questions_fp = "/home/guacs/projects/past-years/backend/sample/dev/questions.json"
-questions_index_fp = "/home/guacs/projects/past-years/backend/sample/dev/.qindex.json"
+questions_fp = "./sample/dev/questions.json"
+questions_index_fp = "./sample/dev/.qindex.json"
 
 [test.questions]
-whoosh_index_dir = ""
+whoosh_index_dir = "./sample/dev/whoosh_index"
 whoosh_questions_index_name = "questions"
-questions_fp = ""
-questions_index_fp = ""
+questions_fp = "./sample/dev/questions.json"
+questions_index_fp = "./sample/dev/.qindex.json"
 
 [prod.questions]
 whoosh_index_dir = ""
@@ -32,7 +32,7 @@ sink = "/home/guacs/projects/past-years/backend/logs/dev.log"
 [test.logs]
 format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | <cyan>{extra[request_id]}</cyan> | {message}"
 log_level = "debug"
-serialize = true
+serialize = false
 sink = "/home/guacs/projects/past-years/backend/logs/test.log"
 
 [prod.logs]

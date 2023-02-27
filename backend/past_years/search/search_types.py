@@ -1,8 +1,8 @@
 """The types related to `search`."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import NamedTuple, TypedDict
+from typing import NamedTuple
 from msgspec import Struct
 
 
@@ -65,20 +65,20 @@ class Filter:
     All these filters are applied with 'AND' logic.
     """
 
-    exams: tuple[Exam]
+    exams: list[Exam] = field(default_factory=list)
     """The exams to filter with (OR)."""
 
-    subjects: tuple[Subject]
+    subjects: list[Subject] = field(default_factory=list)
     """The subjects to filter with (OR)."""
 
-    years: tuple[int]
+    years: list[int] = field(default_factory=list)
     """The years to filter with (OR)."""
 
-    q: str
+    q: str = ""
     """The query to filter with (OR)."""
 
 
-class QuestionsIndex(TypedDict):
+class QuestionsIndex(Struct):
     """The index with respect to exams, subjects and years
     for the questions.
 

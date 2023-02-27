@@ -36,25 +36,3 @@ def configure_logger(log_config: _LogConfig | None = None):
     }
 
     logger.configure(**loguru_config)
-
-
-"""
-config: dict[str, list | dict] = {
-        "handlers": [
-            {
-                "sink": sys.stdout,
-                "format": logger_config.format,
-                "colorize": True,
-                "level": logger_config.log_level.upper(),
-            },
-            {
-                "sink": f"{logger_config.sink}",
-                "format": logger_config.format,
-                "colorize": False,
-                "enqueue": True,
-                "level": logger_config.log_level.upper(),
-            },
-        ],
-        "extra": {"request_id": "0000-0000-0000-0000"},
-    }
-"""

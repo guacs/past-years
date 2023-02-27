@@ -7,12 +7,16 @@ from .query_searcher import QuerySearcherProtocol, WhooshSearcher
 from .question_bank import QuestionBank, QuestionBankProtocol
 from ..configuration import config
 
+from loguru import logger
+
 
 class QuestionBankFactory:
     """A factory class to churn out question banks."""
 
     def get_question_bank(self, type: Literal["file"]) -> QuestionBankProtocol:
         """Returns a question bank based on the `type`."""
+
+        logger.info(f"Getting question bank based on type `{type}`")
 
         if type == "file":
             questions_config = config.get_questions_config()
@@ -31,6 +35,10 @@ class QuerySearcherFactory:
     ) -> QuerySearcherProtocol:
         """Returns a query searcher based on the values of `document`
         and `type`."""
+
+        logger.info(
+            f"Getting query searcher based on document `{document}` and type `{type}`"
+        )
 
         if document == "questions":
             if type == "whoosh":

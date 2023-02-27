@@ -4,6 +4,7 @@ from typing import Protocol
 from whoosh.index import open_dir
 from whoosh.qparser import QueryParser, OrGroup, MultifieldParser
 from whoosh import qparser
+from loguru import logger
 
 
 class QuerySearcherProtocol(Protocol):
@@ -43,6 +44,9 @@ class WhooshSearcher(QuerySearcherProtocol):
         self._total_docs = self._idx.doc_count()
 
     def search(self, query: str) -> set[str]:
+
+        logger.debug(f"Searching for query: {query}")
+
         parsed_query = self._qparser.parse(query)
 
         with self._idx.searcher() as searcher:
