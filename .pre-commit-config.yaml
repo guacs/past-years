@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    # Ruff version.
+    rev: 'v0.0.252'
+    hooks:
+      - id: ruff
+        args: ["--config", "./backend/pyproject.toml", "backend"]
+  - repo: local
+    hooks:
+      - id: tsc
+        name: typescript
+        entry: tsc --project ./frontend
+        language: system
+        pass_filenames: false
+        require_serial: true
+      - id: rome-format
+        name: rome-format
+        entry: rome format --write ./frontend/src
+        language: system
+        require_serial: true
+        pass_filenames: false
+      - id: rome-check
+        name: rome-check
+        entry: rome check --apply-suggested ./frontend/src
+        language: system
+        pass_filenames: false

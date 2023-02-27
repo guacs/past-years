@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "past-years"
+version = "0.1.0"
+description = ""
+authors = ["Guacs <guacs.guacs@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "past_years" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.1.0"
+ruff = "^0.0.252"
+
+[tool.ruff]
+fix = true
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
