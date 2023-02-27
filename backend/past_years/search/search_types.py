@@ -51,7 +51,7 @@ class Question(Struct):
         q_options = " ".join(self.question_options)
         answers = " ".join(self.answers.values())
 
-        return self.main_question + self.continuation + q_options + answers
+        return f"{self.main_question} {self.continuation} {q_options} {answers}"
 
     def __hash__(self) -> int:
         return hash(self.id)

@@ -20,6 +20,18 @@ class QuestionBankProtocol(Mapping, Collection):
         """
         ...
 
+    def __getitem__(self, id: str) -> Question:
+        ...
+
+    def __contains__(self, id: str) -> bool:
+        ...
+
+    def __iter__(self) -> Iterator[Question]:
+        ...
+
+    def __len__(self) -> int:
+        ...
+
     @classmethod
     def qb_factory(
         cls: Type[QuestionBankProtocol], type: Literal["file"]

@@ -29,6 +29,9 @@ class _QuestionsConfig(Struct):
     whoosh_questions_index_name: str = "questions"
     """The name of the Whoosh questions index."""
 
+    whoosh_questions_field_name: str = "question"
+    """The name of the field that's indexed in Whoosh."""
+
 
 class _LogConfig(Struct):
     """The configurations related to logging."""
