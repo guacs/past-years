@@ -1,5 +1,6 @@
 from falcon import App, MEDIA_MSGPACK, MEDIA_JSON
 from past_years.api.handlers import JSONHandler
+from past_years.api.middlewares import LogRequestMiddleware, CompressionMiddleware
 from past_years.search.factories import QuerySearcherFactory, QuestionBankFactory
 
 from past_years.search.search_engine import QuestionSearchEngine
@@ -27,6 +28,10 @@ def make_app() -> App:
     # Adding handlers
     extra_media_handlers = {MEDIA_MSGPACK: MsgPackHandler(), MEDIA_JSON: JSONHandler()}
     app.resp_options.media_handlers.update(extra_media_handlers)
+
+    # Adding middlewares
+    middlewares = [LogRequestMiddleware(), CompressionMiddleware()]
+    app.add_middleware(middlewares)
 
     return app
 

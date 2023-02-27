@@ -1,10 +1,11 @@
-from typing import NamedTuple
+from dataclasses import dataclass
 
 
-class RequestContext(NamedTuple):
+@dataclass
+class RequestContext:
     """A tuple to hold the various context per request."""
 
-    compress: bool = False
+    compress: bool = True
     """Indicates whether to compress the response or not."""
 
     request_start_time: int = 0

@@ -36,6 +36,7 @@ class QuestionsEndpoint:
         """Handles requests for getting the metadata of the questions."""
 
         resp.media = self._search_engine.questions_metadata()
+        req.req_context.compress = False
 
     def _get_filter_object(self, req: Request) -> Filter:
         """Returns the filter object parsed from the request query string.
