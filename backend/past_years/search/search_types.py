@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import TypedDict
+from typing import NamedTuple, TypedDict
 from msgspec import Struct
 
 
@@ -90,3 +90,12 @@ class QuestionsIndex(TypedDict):
     exams: dict[Exam, set[str]]
     subjects: dict[Subject, set[str]]
     years: dict[int, set[str]]
+
+
+class QuestionsMetadata(NamedTuple):
+    """The metadata regarding the questions."""
+
+    exams: set[Exam]
+    subjects: set[Subject]
+    years: set[int]
+    total_questions: int

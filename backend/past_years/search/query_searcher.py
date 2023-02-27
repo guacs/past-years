@@ -1,11 +1,9 @@
 from __future__ import annotations
 
-from typing import Literal, Protocol, Type
+from typing import Protocol
 from whoosh.index import open_dir
 from whoosh.qparser import QueryParser, OrGroup, MultifieldParser
 from whoosh import qparser
-
-from ..configuration import config
 
 
 class QuerySearcherProtocol(Protocol):
@@ -16,27 +14,6 @@ class QuerySearcherProtocol(Protocol):
         """Returns the IDs of the documents that satisfy
         the query."""
         ...
-
-    @classmethod
-    def qs_factory(
-        cls: Type[QuerySearcherProtocol],
-        document: Literal["questions"],
-        type: Literal["whoosh"],
-    ) -> QuerySearcherProtocol:
-        """Returns an instance of a QuerySearcher based on the
-        given document and type values."""
-
-        if document == "questions":
-            if type == "whoosh":
-                qstn_config = config.get_questions_config()
-                return WhooshSearcher(
-                    qstn_config.whoosh_index_dir,
-                    qstn_config.whoosh_questions_index_name,
-                    qstn_config.whoosh_questions_field_name,
-                )
-            raise ValueError(f"{type} is an invalid value for type")
-
-        raise ValueError(f"{document} is an invalid value for document")
 
 
 class WhooshSearcher(QuerySearcherProtocol):
