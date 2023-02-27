@@ -3,6 +3,16 @@
 
 mode = "dev"
 
+# API related configurations
+[dev.api]
+allow_origins = ["http://localhost:3000"]
+
+[test.api]
+# Leave empty, else `msgspec` will raise a ValidationError
+
+[prod.api]
+
+
 # Questions related configurations
 [dev.questions]
 whoosh_index_dir = "/home/guacs/projects/past-years/backend/sample/dev/whoosh_index"

@@ -14,6 +14,12 @@ _LogLevel = Literal["trace", "debug", "info", "success", "warning", "error", "cr
 # ----- Config classes -----
 
 
+class _APIConfig(Struct):
+    """The configuration related to the API."""
+
+    allow_origins: list[str] = []
+
+
 class _QuestionsConfig(Struct):
     """The configurations related to the questions."""
 
@@ -55,6 +61,7 @@ class _DevConfig(Struct):
 
     questions: _QuestionsConfig
     logs: _LogConfig
+    api: _APIConfig
 
 
 class _TestConfig(Struct):
@@ -62,6 +69,7 @@ class _TestConfig(Struct):
 
     questions: _QuestionsConfig
     logs: _LogConfig
+    api: _APIConfig
 
 
 class _ProdConfig(Struct):
@@ -69,6 +77,7 @@ class _ProdConfig(Struct):
 
     questions: _QuestionsConfig
     logs: _LogConfig
+    api: _APIConfig
 
 
 class _Config(Struct):
@@ -91,6 +100,11 @@ class _Config(Struct):
         """Returns the logs config based on the current mode."""
 
         return self._get_config().logs
+
+    def get_api_config(self) -> _APIConfig:
+        """Returns the API config based on the current mode."""
+
+        return self._get_config().api
 
     def _get_config(self) -> _DevConfig | _ProdConfig | _TestConfig:
         """Gets the dev/prod/test config based on the current mode."""
