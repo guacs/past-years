@@ -88,7 +88,7 @@ def _create_questions_idx(questions: Iterable[Question]) -> QuestionsIndex:
 
     start_time = time.monotonic_ns()
 
-    idx: QuestionsIndex = {"exams": {}, "years": {}, "subjects": {}}
+    idx: QuestionsIndex = QuestionsIndex()
     num_of_questions = 0
 
     for q in questions:
@@ -96,9 +96,9 @@ def _create_questions_idx(questions: Iterable[Question]) -> QuestionsIndex:
 
         num_of_questions += 1
 
-        exam_ids = idx["exams"].setdefault(q.exam, set())
-        subject_ids = idx["subjects"].setdefault(q.subject, set())
-        year_ids = idx["years"].setdefault(q.year, set())
+        exam_ids = idx.exams.setdefault(q.exam, set())
+        subject_ids = idx.subjects.setdefault(q.subject, set())
+        year_ids = idx.years.setdefault(q.year, set())
 
         for s in (exam_ids, subject_ids, year_ids):
             s.add(q.id)

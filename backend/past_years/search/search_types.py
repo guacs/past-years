@@ -87,9 +87,9 @@ class QuestionsIndex(Struct):
     IDs of the questions that have that attribute value.
     """
 
-    exams: dict[Exam, set[str]]
-    subjects: dict[Subject, set[str]]
-    years: dict[int, set[str]]
+    exams: dict[Exam, set[str]] = {}
+    subjects: dict[Subject, set[str]] = {}
+    years: dict[int, set[str]] = {}
 
 
 class QuestionsMetadata(NamedTuple):
