@@ -1,7 +1,19 @@
-import type { Component } from "solid-js";
+import { HopeProvider } from "@hope-ui/solid";
+import { Router, useRoutes } from "@solidjs/router";
 
-const App: Component = () => {
-	return <h1>Hello world</h1>;
-};
+import Header from "./layout/Header";
+import routes from "./routes";
+import themeConfig from "./theme";
 
-export default App;
+const Routes = useRoutes(routes);
+
+export default function App() {
+	return (
+		<HopeProvider config={themeConfig}>
+			<Router>
+				<Header />
+				<Routes />
+			</Router>
+		</HopeProvider>
+	);
+}
