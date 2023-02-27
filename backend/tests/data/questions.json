@@ -1,0 +1,720 @@
+[
+    {
+        "main_question": "Consider the following statements:",
+        "continuation": "Which of the staements given above is/are correct?",
+        "question_options": [
+            "(1) Pursuant to the report of HN Sanyal Committee, the Contempt of Courts Act, 1871 was passed.",
+            "(2) The Constitution of India empowers the Supreme Court and the High Courts to punish for contempt of themselves.",
+            "(3) The Constitution of India defines Civil Contempt and Criminal Contempt.",
+            "(4) In India, the Parliament is vested with the powers to make laws on Contempt of Court."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "1, 2 and 4",
+            "c": "3 and 4 only",
+            "d": "3 only"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2020,
+        "subject": "polity",
+        "id": "cb969678821aac2a"
+    },
+    {
+        "main_question": "R2 Code of Practicesâ€™ constitutes a tool available for promoting the adoption of",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Environmentally responsible practices in electronics recycling industry",
+            "b": "Ecological management of â€˜Wetlands of International Importanceâ€™ under the Ramsar Convention",
+            "c": "Sustainable practices in the cultivation of agricultural crops in degraded lands",
+            "d": "Environmental Impact Assessmentâ€™ in the exploitation of natural resources"
+        },
+        "correct_answer": "A",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "509ef22e757fff13"
+    },
+    {
+        "main_question": "Why is there a concern about copper smelting plants?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) They may release lethal quantities of carbon monoxide into environment.",
+            "(2) The copper slag can cause the leaching of some heavy metals into environment.",
+            "(3) They may release sulphur dioxide as a pollutant."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "7b600cf482ad4b1a"
+    },
+    {
+        "main_question": "With reference to furnace oil, consider the following statements:",
+        "continuation": "Which of the statements given above are correct?",
+        "question_options": [
+            "(1) It is a product of oil refineries.",
+            "(2) Some industries use it to generate power.",
+            "(3) Its use causes sulphur emissions into environment."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only\n\n(",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "D",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "environment",
+        "id": "f31d6e8f21e31170"
+    },
+    {
+        "main_question": "Consider the following statements:\n\nThe effect if devaluation of a currency is that it necessarily",
+        "continuation": "Which of the above statements is/are correct?",
+        "question_options": [
+            "(1) Improves the competitiveness of the domestic export in the foreign markets",
+            "(2) Increases the foreign value of domestic currency",
+            "(3) Improves the trade balance"
+        ],
+        "answers": {
+            "a": "1 only",
+            "b": "1 and 2",
+            "c": "3 only",
+            "d": "2 and 3"
+        },
+        "correct_answer": "A",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "economics",
+        "id": "e591e1c33e49e808"
+    },
+    {
+        "main_question": "Which of the following activities constitute real sector in the economy?",
+        "continuation": "Select the correct answer using the code given below:",
+        "question_options": [
+            "(1) Farmers harvesting their crops.",
+            "(2) Textile mills converting raw cotton into fabrics.",
+            "(3) A commercial bank lending money to a trading company.",
+            "(4) A corporate body issuing Rupee Denominated Bonds overseas."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2, 3 and 4 only",
+            "c": "1, 3 and 4 only",
+            "d": "1, 2, 3 and 4"
+        },
+        "correct_answer": "A",
+        "exam": "CSE",
+        "year": 2022,
+        "subject": "economics",
+        "id": "00a401f9786d757b"
+    },
+    {
+        "main_question": "With reference to WaterCreditâ€™, consider the following statements:",
+        "continuation": "Which of the statements given above are correct?",
+        "question_options": [],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "C",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "economics",
+        "id": "7d023467c590c5fd"
+    },
+    {
+        "main_question": "Consider the following:",
+        "continuation": "Which of the above can be included in Foreign Direct Investments?",
+        "question_options": [
+            "(1) Foreign currency convertible bonds",
+            "(2) Foreign institutional investment with certain conditions",
+            "(3) Global depository receipts",
+            "(4) Non-resident external deposits"
+        ],
+        "answers": {
+            "a": "1, 2 and 3",
+            "b": "3 only",
+            "c": "2 and 4",
+            "d": "1 and 4"
+        },
+        "correct_answer": "A",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "economics",
+        "id": "fea30c9ed3c784ef"
+    },
+    {
+        "main_question": "In the nature, which of the following is/are most likely to be found surviving on a surface without soil?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Fern",
+            "(2) Lichen",
+            "(3) Moss",
+            "(4) Mushroom"
+        ],
+        "answers": {
+            "a": "1 and 4 only",
+            "b": "2 only",
+            "c": "2 and 3",
+            "d": "1, 3 and 4"
+        },
+        "correct_answer": "C",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "8d60f006c7dd30fb"
+    },
+    {
+        "main_question": "In India, the central bankâ€™s function as the lender of last resortâ€™ usually refers to which of the following?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Lending to trade and industry bodies when they fail to borrow from other sources",
+            "(2) Providing liquidity to the banks having a temporary crisis",
+            "(3) Lending to governments to finance budgetary deficits"
+        ],
+        "answers": {
+            "a": "1 and 2",
+            "b": "2 only",
+            "c": "2 and 3",
+            "d": "3 only"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "economics",
+        "id": "e5c32de4b861c5e5"
+    },
+    {
+        "main_question": "Indian Government bond yields are influenced by which of the following?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Action of the United States Federal Reserve",
+            "(2) Action of the Reserve Bank of India",
+            "(3) Inflation and short-term interest rates"
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 only",
+            "c": "3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "D",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "economics",
+        "id": "ac97ee60ad6f5db3"
+    },
+    {
+        "main_question": "With reference to the Indian economy, consider the following statements:",
+        "continuation": "Which of the above statements are correct?",
+        "question_options": [
+            "(1) An increase in Nominal Effective Exchange Rate (NEER) indicates the appreciation of rupee.",
+            "(2) An increase in the Real Effective Exchange Rate (REER) indicates an improvement in trade competitiveness.",
+            "(3) An increasing trend in domestic inflation relative to inflation in other countries is likely to cause an increasing divergence between NEER and REER."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "B",
+        "exam": "CDS",
+        "year": 2020,
+        "subject": "economics",
+        "id": "634278af81b0f5a6"
+    },
+    {
+        "main_question": "With reference. to Indian economy, demand-pull inflation can be caused/ increased by which of the following?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Expansionary policies",
+            "(2) Fiscal stimulus",
+            "(3) Inflation-indexing wages",
+            "(4) Higher purchasing power",
+            "(5) Rising interest rates"
+        ],
+        "answers": {
+            "a": "1, 2 and 4 only",
+            "b": "3, 4 and 5 only",
+            "c": "1, 2, 3 and 5 only",
+            "d": "1, 2, 3, 4 and 5"
+        },
+        "correct_answer": "A",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "economics",
+        "id": "5a00b5866a81875c"
+    },
+    {
+        "main_question": "Which one of the following is a filter feeder?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Catfish",
+            "b": "Octopus",
+            "c": "Oyster",
+            "d": "Pelican"
+        },
+        "correct_answer": "C",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "environment",
+        "id": "df765cd0b4a10a48"
+    },
+    {
+        "main_question": "Magnetite particles, suspected to cause neurodegenerative problems, are generated as environmental pollutants from which of the following?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Brakes of motor vehicles",
+            "(2) Engines of motor vehicles",
+            "(3) Microwave stoves within homes",
+            "(4) Power plants",
+            "(5) Telephone lines"
+        ],
+        "answers": {
+            "a": "1, 2, 3 and 5 only",
+            "b": "1, 2 and 4 only",
+            "c": "3, 4 and 5 only",
+            "d": "1, 2, 3, 4 and 5"
+        },
+        "correct_answer": "B",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "environment",
+        "id": "d54075bee1a39c64"
+    },
+    {
+        "main_question": "With reference to India, consider the following statements:",
+        "continuation": "Which of the statements given above is/are correct?",
+        "question_options": [
+            "(1) Government law officers and legal firms are recognized as advocates, but corporate lawyers and patent attorneys are excluded from recognition as advocates.",
+            "(2) Bar Councils have the power to lay down the rules relating to legal education and recognition of law colleges."
+        ],
+        "answers": {
+            "a": "1 only",
+            "b": "2 only",
+            "c": "Both 1 and 2",
+            "d": "Neither 1 nor 2"
+        },
+        "correct_answer": "C",
+        "exam": "CDS",
+        "year": 2022,
+        "subject": "polity",
+        "id": "063787d5a6adef42"
+    },
+    {
+        "main_question": "Which among the following steps is most likely to be taken at the time of an economic recession?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Cut in tax rates accompanied by increase in interest rate.",
+            "b": "Increase in expenditure on public projects",
+            "c": "Increase in tax raise accompanied by reduction of interest rate.",
+            "d": "Reduction of expenditure on public projects"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2020,
+        "subject": "economics",
+        "id": "a7029d2785e45631"
+    },
+    {
+        "main_question": "\"Rapid Financing Instrument\" and \"Rapid Credit Facility\" are related to the provisions of lending by which one of the following?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Asian Development Bank",
+            "b": "International Monetary Fund",
+            "c": "United Nations Environment Programme Finance Initiative",
+            "d": "World Bank"
+        },
+        "correct_answer": "B",
+        "exam": "CDS",
+        "year": 2022,
+        "subject": "international relations",
+        "id": "498872e8a88a72dc"
+    },
+    {
+        "main_question": "With reference to the \"G20 Common Framework\", consider the following statements:",
+        "continuation": "Which of the statements given above is/are correct?",
+        "question_options": [
+            "(1) It is an initiative endorsed by the G20 together with the Paris Club.",
+            "(2) It is an initiative to support Low Income Countries with unsustainable debt."
+        ],
+        "answers": {
+            "a": "1 only",
+            "b": "2 only",
+            "c": "Both 1 and 2",
+            "d": "Neither 1 nor 2"
+        },
+        "correct_answer": "C",
+        "exam": "CSE",
+        "year": 2022,
+        "subject": "international relations",
+        "id": "05fe859fd7134836"
+    },
+    {
+        "main_question": "What is blue carbon?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Carbon captured by oceans and coastal ecosystems",
+            "b": "Carbon sequestered in forest biomass and agricultural soils",
+            "c": "Carbon contained in petroleum and natural gas",
+            "d": "Carbon present in atmosphere"
+        },
+        "correct_answer": "A",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "4313d1b3ccc9a8d2"
+    },
+    {
+        "main_question": "With reference to casual workers employed in India, consider the following statements:",
+        "continuation": "Which of the above statements are correct?",
+        "question_options": [
+            "(1) All casual workers are entitled for Employees Provident Fund converage.",
+            "(2) All casual workers are entitled for regular working hours and overtime payment.",
+            "(3) THe government can by a notification specify that an establishment or industry shall pay wages only through its bank account."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "economics",
+        "id": "59415a9b0fabf771"
+    },
+    {
+        "main_question": "With reference to the New York Declaration on Forests, which of the following statements are correct?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) It was first endorsed at the United Nations Climate Summit in 2014.",
+            "(2) It endorses a global timeline to end the loss of forests.",
+            "(3) It is a legally binding international declaration.",
+            "(4) It is endorsed by governments, big companies and indigenous communities.",
+            "(5) India was one of the signatories at its inception."
+        ],
+        "answers": {
+            "a": "1, 2 and 4",
+            "b": "1, 3 and 5",
+            "c": "3 and 4",
+            "d": "2 and 5"
+        },
+        "correct_answer": "A",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "f3f0ab51f83fe3fe"
+    },
+    {
+        "main_question": "Which one of the following is used in preparing a natural mosquito repellent?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Congress grass",
+            "b": "Elephant grass",
+            "c": "Lemongrass",
+            "d": "Nut grass"
+        },
+        "correct_answer": "C",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "8910d7c0a1bce600"
+    },
+    {
+        "main_question": "Which of the following have species that can establish symbiotic relationship with other organisms?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Cnidarians",
+            "(2) Fungi",
+            "(3) Protozoa"
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "D",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "environment",
+        "id": "2909afd5d6004f94"
+    },
+    {
+        "main_question": "With reference to 'Urban Cooperative Banks' in India, consider the following statements:",
+        "continuation": "Which of the statement given above is/are correct?",
+        "question_options": [
+            "(1) They are supervised and regulated by local boards set up by the state Governments.",
+            "(2) They can issue equity shares and preference shares.",
+            "(3) They were brought under the purview of the Banking Regulation act,1949 through an amendment in 1966"
+        ],
+        "answers": {
+            "a": "1 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "B",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "economics",
+        "id": "06b42c3229ec26d9"
+    },
+    {
+        "main_question": "With reference to the expenditure made by an organization or a company, which of the following statements is/are correct?",
+        "continuation": "Select the correct answer using the code given below:",
+        "question_options": [
+            "(1) Acquiring new technology is capital expenditure.",
+            "(2) Debt financing is considered capital expenditure, while equity financing is considered revenue expenditure."
+        ],
+        "answers": {
+            "a": "1 only",
+            "b": "2 only",
+            "c": "Both 1 and 2",
+            "d": "Neither 1 nor 2"
+        },
+        "correct_answer": "A",
+        "exam": "CDS",
+        "year": 2022,
+        "subject": "economics",
+        "id": "ba642fb18010834d"
+    },
+    {
+        "main_question": "Which one of the following is likely to be the most inflationary in its effects?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Repayment of public debt",
+            "b": "Borrowing from the public to finance budget deficit",
+            "c": "Borrowing from the banks to finance a budget deficit",
+            "d": "Creation of new money to finance a budget deficit"
+        },
+        "correct_answer": "D",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "economics",
+        "id": "895550416b535cb9"
+    },
+    {
+        "main_question": "In case of which one of the following biogeochemical cycles, the weathering of rocks is the main source of release of nutrient to enter the cycle?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Carbon cycle",
+            "b": "Nitrogen cycle",
+            "c": "Phosphorus cycle",
+            "d": "Sulphur cycle"
+        },
+        "correct_answer": "C",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "3ec16fc267fc09be"
+    },
+    {
+        "main_question": "Which one of the following effects of creation black money in India has been main cause of worry to the Government of India?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Diversion of resources to the purchase of real estate and investment in luxury housing",
+            "b": "Investment in unproductive activities and purchase of precious stones, jewellery, gold, etc.",
+            "c": "Large donations to political parties and growth of regionalism",
+            "d": "Loss of revenue to the State Exchequer due to tax evasion"
+        },
+        "correct_answer": "D",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "economics",
+        "id": "a0bb2b1ac75e082e"
+    },
+    {
+        "main_question": "With reference to the Indian economy, what are the advantages of \"Inflation-Indexed Bonds (IIBs)\"?",
+        "continuation": "Which of the statements given above are correct?",
+        "question_options": [
+            "(1) Government can reduce the coupon rates on its borrowing by the way of IIBs.",
+            "(2) IIBs provide protection to the investors from uncertainty regarding inflation.",
+            "(3) The interest received as well as capital gains on IIBs are not taxable."
+        ],
+        "answers": {
+            "a": "1 and 2 only",
+            "b": "2 and 3 only",
+            "c": "1 and 3 only",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "D",
+        "exam": "CDS",
+        "year": 2022,
+        "subject": "economics",
+        "id": "8cfc799f0ccebc77"
+    },
+    {
+        "main_question": "Consider the following statements:\n\nOther things remaining unchanged, market demand for a good might increase if",
+        "continuation": "Which of the above statements are correct?",
+        "question_options": [
+            "(1) price of its substitute increases",
+            "(2) price of its complement increases",
+            "(3) the good is an inferior good and income of the consumers increases",
+            "(4) its price falls"
+        ],
+        "answers": {
+            "a": "1 and 4 only",
+            "b": "2, 3 and 4",
+            "c": "1, 3 and 4",
+            "d": "1, 2 and 3"
+        },
+        "correct_answer": "A",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "economics",
+        "id": "9a6609ccb55601bd"
+    },
+    {
+        "main_question": "With reference to foreign-owned e-commerce firms operating in India, which of the following statements is/are correct?",
+        "continuation": "Select the correct answer using the code given below:",
+        "question_options": [
+            "(1) They can sell their own goods in addition to offering their platforms as market-places.",
+            "(2) The degree to which they can own big sellers on their platforms is limited."
+        ],
+        "answers": {
+            "a": "1 only",
+            "b": "2 only",
+            "c": "Both 1 and 2",
+            "d": "Neither 1 nor 2"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2022,
+        "subject": "economics",
+        "id": "4e10c45718860b8d"
+    },
+    {
+        "main_question": "The Common Carbon Metric, supported by UNEP, has been developed for",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Assessing the carbon footprint of building operations around the world",
+            "b": "Enabling commercial farming entities around the world to enter carbon emission trading",
+            "c": "Enabling governments to assess the overall carbon footprint caused by their countries",
+            "d": "Assessing the overall carbon foot print caused by the use of fossil fuels by the world in a unit time"
+        },
+        "correct_answer": "A",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "1e06b8be239af915"
+    },
+    {
+        "main_question": "Consider the following kinds of organisms :",
+        "continuation": "Which of the above are primary producers in the food chains of oceans?",
+        "question_options": [
+            "(1) Copepods",
+            "(2) Cyanobacteria",
+            "(3) Diatoms",
+            "(4) Foraminifera"
+        ],
+        "answers": {
+            "a": "1 and 2",
+            "b": "2 and 3",
+            "c": "3 and 4",
+            "d": "1 and 4"
+        },
+        "correct_answer": "B",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "5720d18d15277f47"
+    },
+    {
+        "main_question": "Consider the following animals :",
+        "continuation": "To reduce the chance of being captured by predators, which of the above organisms rolls up/roll up and protects/ protect its/their vulnerable parts?",
+        "question_options": [
+            "(1) Hedgehog",
+            "(2) Marmot",
+            "(3) Pangolin"
+        ],
+        "answers": {
+            "a": "1 and 2",
+            "b": "2 only",
+            "c": "3 only",
+            "d": "1 and 3"
+        },
+        "correct_answer": "D",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "environment",
+        "id": "98c0b925527207ba"
+    },
+    {
+        "main_question": "Which of the following are detritivores?",
+        "continuation": "Select the correct answer using the code given below.",
+        "question_options": [
+            "(1) Earthworms",
+            "(2) Jellyfish",
+            "(3) Millipedes",
+            "(4) Seahorses",
+            "(5) Woodlice"
+        ],
+        "answers": {
+            "a": "1, 2 and 4 only",
+            "b": "2, 3, 4 and 5 only",
+            "c": "1, 3 and 5 only",
+            "d": "1, 2, 3, 4 and 5"
+        },
+        "correct_answer": "C",
+        "exam": "CSE",
+        "year": 2021,
+        "subject": "environment",
+        "id": "02a9f0b30cb28514"
+    },
+    {
+        "main_question": "Which of the following situations best reflects \"Indirect Transfers\" often talked about in media recently with reference to India?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "An Indian company investing in a foreign enterprise and paying taxes to the foreign country on the profits arising out of its investment.",
+            "b": "A foreign company investing in India and paying taxes to the country of its base on the profits arising out of its investement.",
+            "c": "An Indian company purchases tangible assets in a foreign country and sells such assets after their value increases and transfers the proceeds to India.",
+            "d": "A foreign company transfers shares and such shares derive their substantial value from assets located in India."
+        },
+        "correct_answer": "D",
+        "exam": "CDS",
+        "year": 2022,
+        "subject": "economics",
+        "id": "715833eeee74d8e0"
+    },
+    {
+        "main_question": "The money multiplier in an economy increases with which one of the following?",
+        "continuation": "",
+        "question_options": [],
+        "answers": {
+            "a": "Increase in the Cash Reserve Ratio in the banks",
+            "b": "Increase in the Statutory Liquidity Ratio in the banks",
+            "c": "Increase in the banking habit of the people",
+            "d": "Increase in the population of the country"
+        },
+        "correct_answer": "C",
+        "exam": "CDS",
+        "year": 2021,
+        "subject": "economics",
+        "id": "25e74b7aec9d0511"
+    }
+]
