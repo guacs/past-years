@@ -11,6 +11,7 @@ python = "^3.11"
 msgspec = "^0.13.1"
 loguru = "^0.6.0"
 whoosh = "^2.7.4"
+falcon = "^3.1.1"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.1.0"
