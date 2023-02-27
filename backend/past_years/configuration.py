@@ -13,6 +13,7 @@ _LogLevel = Literal["trace", "debug", "info", "success", "warning", "error", "cr
 
 # ----- Config classes -----
 
+
 class _QuestionsConfig(Struct):
     """The configurations related to the questions."""
 
@@ -24,6 +25,7 @@ class _QuestionsConfig(Struct):
 
     questions_index_fp: str
     """THe path to the file with the questions index."""
+
 
 class _LogConfig(Struct):
     """The configurations related to logging."""
@@ -41,11 +43,13 @@ class _LogConfig(Struct):
     """The sink to which the logs are written to in addition to the
     stdout."""
 
+
 class _DevConfig(Struct):
     """The configurations for development."""
 
     questions: _QuestionsConfig
     logs: _LogConfig
+
 
 class _TestConfig(Struct):
     """The configurations for testing."""
@@ -59,7 +63,6 @@ class _ProdConfig(Struct):
 
     questions: _QuestionsConfig
     logs: _LogConfig
-
 
 
 class _Config(Struct):
@@ -111,14 +114,15 @@ class _Config(Struct):
         except msgspec.ValidationError as ex:
             raise InvalidConfigFileError(str(ex), file_path) from ex
 
+
 # ----- Helpers -----
+
 
 def _get_config_fp(config_file_name: str = ".config.toml") -> Path:
     """Gets the file path for the configuration file with the
     given filename."""
 
     for fp in _walk_to_root(Path(__file__)):
-
         for file_name in os.listdir(fp):
             if file_name == config_file_name:
                 return fp / file_name

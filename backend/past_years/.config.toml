@@ -24,16 +24,16 @@ questions_index_fp = ""
 format = ""
 log_level = "trace"
 serialize = true
-sink = ""
+sink = "/home/guacs/projects/past-years/backend/logs/dev.log"
 
 [test.logs]
 format = ""
 log_level = "debug"
 serialize = true
-sink = ""
+sink = "/home/guacs/projects/past-years/backend/logs/test.log"
 
 [prod.logs]
 format = ""
 log_level = "info"
 serialize = false
-sink = ""
+sink = "/home/guacs/projects/past-years/backend/logs/prod.log"

@@ -1,6 +1,7 @@
 # Project Specific
 trial.py
 sample/
+logs/
 
 # VS Code
 .vscode/
