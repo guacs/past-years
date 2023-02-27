@@ -21,12 +21,16 @@ repos:
         require_serial: true
   - repo: local
     hooks:
-      - id: tsc
-        name: typescript
-        entry: tsc --project ./frontend
-        language: system
-        pass_filenames: false
-        require_serial: true
+      # Removing `tsc` check until this issue is resolved:
+      # https://github.com/microsoft/TypeScript/issues/27379
+      # Due to this, all files have to be checked by `tsc` which
+      # is SLOW.
+      # - id: tsc
+      #   name: typescript
+      #   entry: tsc --project ./frontend
+      #   language: system
+      #   pass_filenames: false
+      #   require_serial: true
       - id: rome-format
         name: rome-format
         entry: rome format --write ./frontend/src
