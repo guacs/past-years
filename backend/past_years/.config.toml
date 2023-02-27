@@ -1,0 +1,39 @@
+# NOTE: All relative filepaths are considered to be relative to the folder
+# this file is currently in i.e. the `past_years` folder
+
+mode = "dev"
+
+# Questions related configurations
+[dev.questions]
+whoosh_index_dir = "/home/guacs/projects/past-years/backend/sample/dev/whoosh_index"
+questions_fp = "/home/guacs/projects/past-years/backend/sample/dev/questions.json"
+questions_index_fp = "/home/guacs/projects/past-years/backend/sample/dev/.qindex.json"
+
+[test.questions]
+whoosh_index_dir = ""
+questions_fp = ""
+questions_index_fp = ""
+
+[prod.questions]
+whoosh_index_dir = ""
+questions_fp = ""
+questions_index_fp = ""
+
+# Logging related configurations
+[dev.logs]
+format = ""
+log_level = "trace"
+serialize = true
+sink = ""
+
+[test.logs]
+format = ""
+log_level = "debug"
+serialize = true
+sink = ""
+
+[prod.logs]
+format = ""
+log_level = "info"
+serialize = false
+sink = ""
