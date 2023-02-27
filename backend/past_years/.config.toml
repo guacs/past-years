@@ -6,16 +6,19 @@ mode = "dev"
 # Questions related configurations
 [dev.questions]
 whoosh_index_dir = "/home/guacs/projects/past-years/backend/sample/dev/whoosh_index"
+whoosh_questions_index_name = "questions"
 questions_fp = "/home/guacs/projects/past-years/backend/sample/dev/questions.json"
 questions_index_fp = "/home/guacs/projects/past-years/backend/sample/dev/.qindex.json"
 
 [test.questions]
 whoosh_index_dir = ""
+whoosh_questions_index_name = "questions"
 questions_fp = ""
 questions_index_fp = ""
 
 [prod.questions]
 whoosh_index_dir = ""
+whoosh_questions_index_name = "questions"
 questions_fp = ""
 questions_index_fp = ""
 

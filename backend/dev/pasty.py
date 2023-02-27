@@ -7,7 +7,7 @@ from past_years.utils import configure_logger
 import click
 
 from past_years.errors import InvalidConfigFileError
-from index import create_questions_index
+from index import create_questions_index, create_whoosh_index
 
 # ----- Global Values -----
 logger_configured: bool = False
@@ -82,16 +82,33 @@ def questions(verbosity: int, questions_fp: str, index_fp: str):
 
 @index.command()
 @click.option(
+    "--questions-fp", help="The path to the file/directory with the questions."
+)
+@click.option("--index-fp", help="The filepath to where the index is stored.")
+@click.option("--index-name", help="The name to give the index.")
+@click.option("-r", "--reset", is_flag=True)
+@click.option(
     "-v",
     "--verbosity",
     count=True,
     help="The verbosity level. This can be repeated for increased verbosity.",
 )
-def whoosh(verbosity: int):
+def whoosh(
+    questions_fp: str, index_fp: str, index_name: str, reset: bool, verbosity: int
+):
     """Indexes the questions with Whoosh."""
 
     _configure_logger(verbosity)
-    click.secho("NOT IMPLEMENTED!", fg="red")
+
+    config = _get_config()
+    questions_config = config.get_questions_config()
+
+    questions_fp = questions_fp or questions_config.questions_fp
+    index_fp = index_fp or questions_config.whoosh_index_dir
+    index_name = index_name or questions_config.whoosh_questions_index_name
+
+    create_whoosh_index(index_fp, questions_fp, index_name, reset)
+    click.secho("Created the index successfully!", fg="green")
 
 
 # ----- Helpers -----

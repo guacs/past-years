@@ -24,7 +24,10 @@ class _QuestionsConfig(Struct):
     """The path to the directory/file with the PYQs."""
 
     questions_index_fp: str
-    """THe path to the file with the questions index."""
+    """The path to the file with the questions index."""
+
+    whoosh_questions_index_name: str = "questions"
+    """The name of the Whoosh questions index."""
 
 
 class _LogConfig(Struct):
