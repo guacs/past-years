@@ -1,6 +1,8 @@
 import { RouteDefinition } from "@solidjs/router";
-import HomePage from "./pages/HomePage";
-import QuestionsPage from "./pages/QuestionsPage";
+import { lazy } from "solid-js";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const QuestionsPage = lazy(() => import("./pages/QuestionsPage"));
 
 const routes: RouteDefinition[] = [
 	{

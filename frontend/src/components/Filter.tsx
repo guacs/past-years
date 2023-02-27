@@ -105,7 +105,7 @@ export default function Filter(props: FilterProps) {
 			queryParams.set("q", query());
 		}
 
-		return queryParams.toString();
+		return queryParams.toString().toLowerCase();
 	}
 
 	/** Sets the new search parameters with the values in the filters. */
