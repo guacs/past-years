@@ -21,13 +21,13 @@ questions_index_fp = ""
 
 # Logging related configurations
 [dev.logs]
-format = ""
+format = "<magenta>{time:YYYY-MM-DD HH:mm:ss}</magenta> | <level>{level}</level> | <cyan>{extra[request_id]}</cyan> | {message}"
 log_level = "trace"
-serialize = true
+serialize = false
 sink = "/home/guacs/projects/past-years/backend/logs/dev.log"
 
 [test.logs]
-format = ""
+format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | <cyan>{extra[request_id]}</cyan> | {message}"
 log_level = "debug"
 serialize = true
 sink = "/home/guacs/projects/past-years/backend/logs/test.log"

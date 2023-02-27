@@ -21,5 +21,5 @@ class InvalidConfigFileError(PastYearsError):
     """Raised when the config file is invalid."""
 
     def __init__(self, msg: str, fp: str | Path) -> None:
-        error_msg = f"Invalid config file: '{fp}'\n\n\tERROR: {msg}"
+        error_msg = f"Invalid config file: '{fp}'\nERROR: {msg}"
         super().__init__(error_msg)

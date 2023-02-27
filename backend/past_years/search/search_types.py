@@ -77,6 +77,7 @@ class Filter:
     q: str
     """The query to filter with (OR)."""
 
+
 class QuestionsIndex(TypedDict):
     """The index with respect to exams, subjects and years
     for the questions.

@@ -34,8 +34,7 @@ class QuestionBankProtocol(Mapping, Collection):
         if type == "file":
             questions_config = config.get_questions_config()
             return QuestionBank(
-                questions_config.questions_fp,
-                questions_config.questions_index_fp
+                questions_config.questions_fp, questions_config.questions_index_fp
             )
 
         raise ValueError(f"{type} is an invalid value for `type`")

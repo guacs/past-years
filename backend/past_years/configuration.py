@@ -96,18 +96,25 @@ class _Config(Struct):
         return self.prod
 
     @classmethod
-    def load_config(cls: Type[_Config], file_path: Path | None = None) -> _Config:
+    def load_config(
+        cls: Type[_Config], file_path: Path | None = None, starting_path: str = __file__
+    ) -> _Config:
         """Loads the configuration from the given file path.
 
-        If the file path is not provided, a config file with the
-        name `.config.toml` is searched for recursively upwards
-        starting from the directory this file is in.
+        Args:
+            file_path: The path to the configuration file.
+                If the file path is not provided, a config file with the
+                name `.config.toml` is searched for recursively upwards
+                starting from the directory this file is in.
+
+            starting_path: The path from which to start recursively
+                looking for the config file.
 
         Returns:
             The configuration object.
         """
 
-        file_path = file_path or _get_config_fp()
+        file_path = file_path or _get_config_fp(starting_path=starting_path)
         file_bytes = file_path.read_bytes()
         try:
             return msgspec.toml.decode(file_bytes, type=_Config)
@@ -118,11 +125,19 @@ class _Config(Struct):
 # ----- Helpers -----
 
 
-def _get_config_fp(config_file_name: str = ".config.toml") -> Path:
+def _get_config_fp(
+    config_file_name: str = ".config.toml", starting_path: str = __file__
+) -> Path:
     """Gets the file path for the configuration file with the
-    given filename."""
+    given filename.
 
-    for fp in _walk_to_root(Path(__file__)):
+    Args:
+        config_file_name: The name of the configuration file.
+        starting_path: The path from which to start recursively
+            looking for the config file.
+    """
+
+    for fp in _walk_to_root(Path(starting_path)):
         for file_name in os.listdir(fp):
             if file_name == config_file_name:
                 return fp / file_name
