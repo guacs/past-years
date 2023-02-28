@@ -1,6 +1,9 @@
 """The CLI for the dev tools for the website."""
 
 from pathlib import Path
+
+import msgspec
+from dev.random_data import RandomQuestionGenerator
 from past_years.configuration import _Config, _LogLevel
 from past_years.utils import configure_logger
 
@@ -109,6 +112,26 @@ def whoosh(
 
     create_whoosh_index(index_fp, questions_fp, index_name, reset)
     click.secho("Created the index successfully!", fg="green")
+
+
+@run.command(name="random")
+@click.option("--total-questions", "-t", type=int, default=1000)
+@click.option(
+    "--population",
+    "-p",
+    help="The JSON file that holds the data to be used for making random questions.",
+)
+def random_data(total_questions: int, population: str | None):
+    population = population or ""
+    question_generator = RandomQuestionGenerator(total_questions, population)
+    questions_bytes = msgspec.json.encode(list(question_generator.create_questions()))
+
+    # Saving the questions
+    config = _get_config().get_questions_config()
+    questions_fp = Path(config.questions_fp)
+    questions_fp.write_bytes(questions_bytes)
+
+    click.secho("Created and saved the questions!", fg="green")
 
 
 # ----- Helpers -----
