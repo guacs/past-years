@@ -68,7 +68,6 @@ class QuestionSearchEngine:
         return reservoir
 
     def _search(self, filter: Filter) -> set[str]:
-
         hits = self._qbank.filter(filter)
         if filter.q:
             qsearch_hits = self._qsearcher.search(filter.q)

@@ -25,7 +25,6 @@ class JSONHandler(BaseHandler):
     _decoder = msgspec.json.Decoder()
 
     def serialize(self, media: Any, content_type: str) -> bytes:
-
         assert content_type == falcon.MEDIA_JSON
         return self._encoder.encode(media)
 

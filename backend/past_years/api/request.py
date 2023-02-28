@@ -9,7 +9,6 @@ MEDIA_TYPES = Literal["application/json", "application/msgpack"]
 
 class Request(FalconRequest):
     def __init__(self, env, options=None):
-
         super().__init__(env, options)
 
         self.req_context = RequestContext()

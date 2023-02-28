@@ -8,7 +8,6 @@ from utils import configure_logger
 
 
 def initialize_application() -> App:
-
     configure_logger()
     return make_app()
 
@@ -16,7 +15,6 @@ def initialize_application() -> App:
 application = initialize_application()
 
 if __name__ == "__main__":
-
     # THIS IS ONLY MEANT FOR DEVELOPMENT PURPOSES!!
     from wsgiref import simple_server
 

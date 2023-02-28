@@ -44,7 +44,6 @@ class WhooshSearcher(QuerySearcherProtocol):
         self._total_docs = self._idx.doc_count()
 
     def search(self, query: str) -> set[str]:
-
         logger.debug(f"Searching for query: {query}")
 
         parsed_query = self._qparser.parse(query)

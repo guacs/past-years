@@ -79,7 +79,6 @@ class QuestionBank(QuestionBankProtocol):
 
     @property
     def metadata(self) -> QuestionsMetadata:
-
         if self._metadata is not None:
             return self._metadata
 
@@ -98,7 +97,6 @@ class QuestionBank(QuestionBankProtocol):
         return filter(lambda q: q.id in ids, iter(self))
 
     def filter(self, filter_obj: Filter) -> set[str]:
-
         logger.debug(f"Filter with filter: {filter_obj}")
 
         filtered_ids: set[str] = self._all_ids
@@ -158,7 +156,6 @@ class QuestionBank(QuestionBankProtocol):
             questions.extend(fp_questions)
         else:
             for fp in questions_fp.rglob("*.json"):
-
                 logger.trace(f"Loading questions from `{fp}`")
 
                 file_bytes = fp.read_bytes()

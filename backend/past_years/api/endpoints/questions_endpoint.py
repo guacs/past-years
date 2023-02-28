@@ -15,7 +15,6 @@ class QuestionsEndpoint:
     _RANDOM_QUESTIONS_LIMIT = 5
 
     def __init__(self, search_engine: QuestionSearchEngine):
-
         self._search_engine = search_engine
 
     def on_get(self, req: Request, resp: Response):

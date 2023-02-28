@@ -12,7 +12,6 @@ from past_years.api.handlers import MsgPackHandler
 
 
 def make_app() -> App:
-
     app = App(
         request_type=Request,
     )
@@ -52,7 +51,6 @@ def _get_middlwares() -> list[Any]:
 
 
 def _get_search_engine() -> QuestionSearchEngine:
-
     qb = QuestionBankFactory().get_question_bank("file")
     qs = QuerySearcherFactory().get_query_searcher("questions", "whoosh")
 
