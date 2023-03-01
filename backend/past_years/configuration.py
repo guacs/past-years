@@ -1,5 +1,6 @@
 """Holds the config related items."""
 from __future__ import annotations
+from copy import copy
 import os
 from pathlib import Path
 
@@ -38,6 +39,13 @@ class _QuestionsConfig(Struct):
     whoosh_questions_field_name: str = "question"
     """The name of the field that's indexed in Whoosh."""
 
+    def normalize_paths(self, fp: Path):
+        """Normalizes all the relative paths into absolute paths."""
+
+        self.questions_fp = _get_full_path(fp, self.questions_fp)
+        self.questions_index_fp = _get_full_path(fp, self.questions_index_fp)
+        self.whoosh_index_dir = _get_full_path(fp, self.whoosh_index_dir)
+
 
 class _LogConfig(Struct):
     """The configurations related to logging."""
@@ -55,29 +63,36 @@ class _LogConfig(Struct):
     """The sink to which the logs are written to in addition to the
     stdout."""
 
+    def normalize_path(self, fp: Path):
+        """Normalizes all the relative paths into absolute paths."""
 
-class _DevConfig(Struct):
+        self.sink = _get_full_path(fp, self.sink)
+
+
+class _CommonConfig(Struct):
+    """Common configurations in dev, test and prod modes."""
+
+    questions: _QuestionsConfig
+    logs: _LogConfig
+    api: _APIConfig
+
+    def normalize_paths(self, fp: Path):
+        """Normalizes all the relative paths into absolute paths."""
+
+        self.questions.normalize_paths(fp)
+        self.logs.normalize_path(fp)
+
+
+class _DevConfig(_CommonConfig):
     """The configurations for development."""
 
-    questions: _QuestionsConfig
-    logs: _LogConfig
-    api: _APIConfig
 
-
-class _TestConfig(Struct):
+class _TestConfig(_CommonConfig):
     """The configurations for testing."""
 
-    questions: _QuestionsConfig
-    logs: _LogConfig
-    api: _APIConfig
 
-
-class _ProdConfig(Struct):
+class _ProdConfig(_CommonConfig):
     """The configurations for production."""
-
-    questions: _QuestionsConfig
-    logs: _LogConfig
-    api: _APIConfig
 
 
 class _Config(Struct):
@@ -90,6 +105,11 @@ class _Config(Struct):
     dev: _DevConfig
     prod: _ProdConfig
     test: _TestConfig
+
+    def normalize_paths(self, fp: Path):
+        self.dev.normalize_paths(fp)
+        self.prod.normalize_paths(fp)
+        self.test.normalize_paths(fp)
 
     def get_questions_config(self) -> _QuestionsConfig:
         """Returns the questions config based on the current mode."""
@@ -137,9 +157,11 @@ class _Config(Struct):
         file_path = file_path or _get_config_fp(starting_path=starting_path)
         file_bytes = file_path.read_bytes()
         try:
-            return msgspec.toml.decode(
+            config = msgspec.toml.decode(
                 file_bytes, type=_Config, dec_hook=_path_dec_hook
             )
+            config.normalize_paths(file_path.absolute())
+            return config
         except msgspec.ValidationError as ex:
             raise InvalidConfigFileError(str(ex), file_path) from ex
 
@@ -183,7 +205,39 @@ def _walk_to_root(path: Path) -> Generator[Path, None, None]:
     yield root_dir
 
 
-# ----- MsgSpec Hooks -----
+def _get_full_path(absolute: Path, relative: Path) -> Path:
+    """Returns the full path of the relative path based on the
+    assumption that the relative path is relative to the
+    given absolute path.
+
+    Arguments:
+        absolute: The absolute path used as the starting point
+            in normalizing the relative path.
+        relative: The path to normalize. If this is already
+            a relative path, then no normalization is done
+            and instead it is simply returned.
+
+    Example:
+        absolute = "/path/to/absolute/file"
+        relative = "../relative/file"
+
+        get_full_path(absolute, relative) # /path/to/relative/file
+    """
+
+    if relative.is_absolute():
+        return relative
+
+    assert absolute.is_absolute(), f"{absolute} must be absolute"
+
+    full_path = copy(absolute)
+    for fp in reversed(relative.parents):
+        full_path /= fp.name
+    full_path /= relative.name
+
+    return full_path.resolve()
+
+
+# ----- Msgspec Hooks -----
 
 
 def _path_dec_hook(type: Type, obj: Any) -> Any:
