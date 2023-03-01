@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from typing import Generator, Literal, Type
+from typing import Any, Generator, Literal, Type
 from msgspec import Struct
 import msgspec
 
@@ -23,13 +23,13 @@ class _APIConfig(Struct):
 class _QuestionsConfig(Struct):
     """The configurations related to the questions."""
 
-    whoosh_index_dir: str
+    whoosh_index_dir: Path
     """The path to the directory with the Whoosh index for the questions."""
 
-    questions_fp: str
+    questions_fp: Path
     """The path to the directory/file with the PYQs."""
 
-    questions_index_fp: str
+    questions_index_fp: Path
     """The path to the file with the questions index."""
 
     whoosh_questions_index_name: str = "questions"
@@ -51,7 +51,7 @@ class _LogConfig(Struct):
     serialize: bool = False
     """Indicates whether to serialize the logs to JSON or not."""
 
-    sink: str = ""
+    sink: Path = Path(".")
     """The sink to which the logs are written to in addition to the
     stdout."""
 
@@ -137,7 +137,9 @@ class _Config(Struct):
         file_path = file_path or _get_config_fp(starting_path=starting_path)
         file_bytes = file_path.read_bytes()
         try:
-            return msgspec.toml.decode(file_bytes, type=_Config)
+            return msgspec.toml.decode(
+                file_bytes, type=_Config, dec_hook=_path_dec_hook
+            )
         except msgspec.ValidationError as ex:
             raise InvalidConfigFileError(str(ex), file_path) from ex
 
@@ -179,6 +181,19 @@ def _walk_to_root(path: Path) -> Generator[Path, None, None]:
         curr_dir = curr_dir.parent
 
     yield root_dir
+
+
+# ----- MsgSpec Hooks -----
+
+
+def _path_dec_hook(type: Type, obj: Any) -> Any:
+    """A hook to convert strings into Path objects when decoding
+    with Msgspec."""
+
+    if type is Path and isinstance(obj, str):
+        return Path(obj)
+
+    raise TypeError(f"Objects of type {type} are not supported")
 
 
 # The "singleton" configuration object
