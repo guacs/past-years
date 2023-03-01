@@ -1,5 +1,8 @@
-# NOTE: All relative filepaths are considered to be relative to the folder
-# this file is currently in i.e. the `past_years` folder
+# !!!!!
+#
+# NOTE: All relative filepaths are considered to be relative to this file
+#
+# !!!!!
 
 mode = "dev"
 
@@ -15,16 +18,16 @@ allow_origins = ["http://localhost:3000", "http://localhost:4173"]
 
 # Questions related configurations
 [dev.questions]
-whoosh_index_dir = "/home/guacs/projects/past-years/backend/sample/dev/whoosh_index"
+whoosh_index_dir = "../../sample/dev/whoosh_index"
 whoosh_questions_index_name = "questions"
-questions_fp = "/home/guacs/projects/past-years/backend/sample/dev/questions.json"
-questions_index_fp = "/home/guacs/projects/past-years/backend/sample/dev/.qindex.json"
+questions_fp = "../../sample/dev/questions.json"
+questions_index_fp = "../../sample/dev/.qindex.json"
 
 [test.questions]
-whoosh_index_dir = "/home/guacs/projects/past-years/backend/sample/dev/whoosh_index"
+whoosh_index_dir = "../../sample/dev/whoosh_index"
 whoosh_questions_index_name = "questions"
-questions_fp = "/home/guacs/projects/past-years/backend/sample/dev/questions.json"
-questions_index_fp = "/home/guacs/projects/past-years/backend/sample/dev/.qindex.json"
+questions_fp = "../../sample/dev/questions.json"
+questions_index_fp = "../../sample/dev/.qindex.json"
 
 [prod.questions]
 whoosh_index_dir = ""
@@ -37,16 +40,16 @@ questions_index_fp = ""
 format = "<magenta>{time:YYYY-MM-DD HH:mm:ss}</magenta> | <level>{level}</level> | <cyan>{extra[request_id]}</cyan> | {message}"
 log_level = "trace"
 serialize = false
-sink = "/home/guacs/projects/past-years/backend/logs/dev.log"
+sink = "../../logs/dev.log"
 
 [test.logs]
 format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | <cyan>{extra[request_id]}</cyan> | {message}"
 log_level = "debug"
 serialize = false
-sink = "/home/guacs/projects/past-years/backend/logs/test.log"
+sink = "../../logs/test.log"
 
 [prod.logs]
 format = ""
 log_level = "info"
 serialize = false
-sink = "/home/guacs/projects/past-years/backend/logs/prod.log"
+sink = "../../logs/prod.log"
