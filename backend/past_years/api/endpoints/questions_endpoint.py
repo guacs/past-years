@@ -1,5 +1,6 @@
-from falcon import Response
+from falcon import Response, HTTPNotFound
 from past_years.api.request import Request
+from past_years.errors import QuestionNotFoundError
 from past_years.search import QuestionSearchEngine, Filter
 import msgspec
 
@@ -17,12 +18,15 @@ class QuestionsEndpoint:
     def __init__(self, search_engine: QuestionSearchEngine):
         self._search_engine = search_engine
 
-    def on_get(self, req: Request, resp: Response):
-        """Handles all requests for getting filtered questions."""
+    def on_get(self, req: Request, resp: Response, question_id: str):
+        """Handles requests to get a single question."""
 
-        filter = self._get_filter_object(req)
-        resp.media = self._search_engine.search(filter)
-        resp.content_type = req.get_accepted_content_type()
+        try:
+            resp.media = self._search_engine.get_question(question_id)
+        except QuestionNotFoundError as ex:
+            raise HTTPNotFound(title=ex.__class__.__name__, description=ex.msg)
+
+        req.req_context.compress = False
 
     def on_get_random(self, req: Request, resp: Response):
         """Handles all requests for getting random questions."""
@@ -36,6 +40,13 @@ class QuestionsEndpoint:
 
         resp.media = self._search_engine.questions_metadata()
         req.req_context.compress = False
+
+    def on_get_filter(self, req: Request, resp: Response):
+        """Handles all requests for getting filtered questions."""
+
+        filter = self._get_filter_object(req)
+        resp.media = self._search_engine.search(filter)
+        resp.content_type = req.get_accepted_content_type()
 
     def _get_filter_object(self, req: Request) -> Filter:
         """Returns the filter object parsed from the request query string.

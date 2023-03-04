@@ -27,7 +27,8 @@ def make_app() -> App:
     incorrect_question_endpoint = IncorrectQuestionEndpoint(incorrect_qstn_handler)
 
     # Adding routes
-    app.add_route("/questions", questions_endpoint)
+    app.add_route("/questions/{question_id}", questions_endpoint)
+    app.add_route("/questions/filter", questions_endpoint, suffix="filter")
     app.add_route("/questions/random", questions_endpoint, suffix="random")
     app.add_route("/questions/metadata", questions_endpoint, suffix="metadata")
     app.add_route("/incorrect-question/{question_id}", incorrect_question_endpoint)
