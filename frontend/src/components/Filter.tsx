@@ -17,6 +17,7 @@ import {
 import { Params, useSearchParams } from "@solidjs/router";
 import { For, Setter, createResource, createSignal, onMount } from "solid-js";
 import { fetchQuestionsMetadata } from "../api";
+import { title } from "../utils";
 
 // ----- Props Interfaces/Types -----
 interface FilterProps {

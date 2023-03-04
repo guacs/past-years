@@ -1,9 +1,8 @@
 import { For, Match, Resource, Switch } from "solid-js";
 import { Question } from "../types";
-import SingleQuestion from "./SingleQuestion";
+import FullQuestion from "./SingleQuestion";
 import { Box, Divider, SkeletonText } from "@hope-ui/solid";
 import FetchError from "./FetchError";
-
 // ----- Props Interfaces/Types -----
 interface QuestionsProps {
 	questions: Resource<Question[]>;
@@ -22,7 +21,7 @@ export default function Questions(props: QuestionsProps) {
 				<Match when={props.questions()}>
 					<For each={props.questions()}>
 						{(question, idx) => (
-							<SingleQuestion question={question} num={idx() + 1} />
+							<FullQuestion question={question} num={idx() + 1} showMetadata />
 						)}
 					</For>
 				</Match>
