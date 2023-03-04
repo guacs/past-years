@@ -5,6 +5,12 @@ from falcon import Response, HTTPNotFound, HTTPBadRequest
 from past_years.incorrect import IncorrectQuestionsHandler
 import msgspec
 
+# ----- Constants -----
+
+# The number of seconds for about 6 months
+# i.e. seconds * mins * hours per day * days per month * months
+ISSUE_URL_CACHE_TIME = 60 * 60 * 24 * 30 * 6
+
 
 class IncorrectQuestionRequestBody(TypedDict):
 
@@ -26,7 +32,9 @@ class IncorrectQuestionEndpoint:
         if not issue_url:
             raise HTTPNotFound(title="Issue not found")
 
-        resp.media = {"issue_url": issue_url}
+        resp.media = issue_url
+        # This can be safely cached for a loooong time
+        resp.append_header("cache-control", f"public; max-age={ISSUE_URL_CACHE_TIME}")
 
     def on_post(self, req: Request, resp: Response, question_id: str):
         """Creating the new comments on the given question."""
@@ -41,4 +49,4 @@ class IncorrectQuestionEndpoint:
             question_id, req_body["comments"]
         )
 
-        resp.media = {"issue_url": issue_url}
+        resp.media = issue_url

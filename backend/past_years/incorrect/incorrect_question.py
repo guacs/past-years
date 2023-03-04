@@ -3,7 +3,7 @@ from past_years.github.gh_client import GithubClient
 from loguru import logger
 
 
-class IssueCacheDetails(NamedTuple):
+class CachedIssueDetails(NamedTuple):
 
     issue_number: int
     issue_url: str
@@ -20,7 +20,7 @@ class IncorrectQuestionsHandler:
         self._gh = gh_client
         # This holds the question ID as the key and the
         # corresponding GitHub issue number
-        self._cache: dict[str, IssueCacheDetails] = {}
+        self._cache: dict[str, CachedIssueDetails] = {}
 
     def get_question_issue_url(self, question_id: str) -> str | None:
         """Returns the URL to the GitHub issue for the given
@@ -35,7 +35,7 @@ class IncorrectQuestionsHandler:
             return
 
         issue_url = issue["html_url"]
-        self._cache[question_id] = IssueCacheDetails(issue["number"], issue_url)
+        self._cache[question_id] = CachedIssueDetails(issue["number"], issue_url)
         return issue_url
 
     def note_incorrect_question(self, question_id: str, comments: str) -> str:
@@ -86,6 +86,6 @@ class IncorrectQuestionsHandler:
         for issue in self._gh.get_issues(labels=["incorrect-question"]):
             title = issue["title"]
             q_id = title.split(":")[-1].strip()
-            self._cache[q_id] = issue["number"]
+            self._cache[q_id] = CachedIssueDetails(issue["number"], issue["html_url"])
             if q_id == question_id:
                 return issue

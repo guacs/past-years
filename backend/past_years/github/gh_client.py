@@ -46,7 +46,7 @@ class GithubClient:
         logger.debug(f"Getting issue `{issue_number}`")
 
         url = f"{self._issues_url}/{issue_number}"
-        return self._get_request(url)
+        return self._get_request(url).json()
 
     def create_issue(self, title: str, body: str = "", labels: list[str] | None = None):
         """Creates a new issue with the given title and body."""
