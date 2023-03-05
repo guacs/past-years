@@ -13,8 +13,10 @@ const axios = globalAxios.create({
 
 // ----- Endpoints -----
 const QUESTIONS = "/questions" as const;
+const FILTERED_QUESTIONS = `${QUESTIONS}/filter` as const;
 const RANDOM = "/questions/random" as const;
 const QUESTIONS_METADATA = "/questions/metadata" as const;
+const INCORRECT_QUESTION = "/incorrect-question/" as const;
 
 // ----- API Calls -----
 /** Fetches the questions. */
@@ -27,7 +29,10 @@ async function fetchQuestions(endpoint: string) {
 export async function fetchFilteredQuestions(
 	filter: string,
 ): Promise<Question[]> {
-	const endpoint = filter.length === 0 ? QUESTIONS : `${QUESTIONS}?${filter}`;
+	const endpoint =
+		filter.length === 0
+			? FILTERED_QUESTIONS
+			: `${FILTERED_QUESTIONS}?${filter}`;
 	return await fetchQuestions(endpoint);
 }
 
@@ -48,4 +53,29 @@ export async function fetchQuestionsMetadata(): Promise<QuestionsMetadata> {
 	metadata.years = metadata.years.map((y) => y.toString());
 
 	return metadata;
+}
+
+/** Fetches a single question. */
+export async function fetchQuestion(id: string): Promise<Question> {
+	const endpoint = `${QUESTIONS}/${id}`;
+	const response = await axios.get<Question>(endpoint);
+	console.log(response.data);
+	return camelcaseKeys(response.data);
+}
+
+export async function fetchIncorrectQuestionUrl(id: string): Promise<string> {
+	const endpoint = INCORRECT_QUESTION + id;
+	const response = await axios.get<string>(endpoint);
+	return response.data;
+}
+
+export async function reportIncorrectQuestion(
+	question_id: string,
+	comments: string,
+): Promise<string> {
+	const endpoint = INCORRECT_QUESTION + question_id;
+	const response = await axios.post<string>(endpoint, {
+		comments: comments,
+	});
+	return response.data;
 }
