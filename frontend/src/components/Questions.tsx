@@ -62,7 +62,12 @@ export default function Questions(props: QuestionsProps) {
 	}
 
 	return (
-		<Box>
+		<Box
+			margin="$0"
+			css={{
+				minH: "calc(100vh - 420px)",
+			}}
+		>
 			<Switch>
 				<Match when={props.questions.loading}>
 					<Box margin="$10" padding="$10">
@@ -72,7 +77,7 @@ export default function Questions(props: QuestionsProps) {
 				<Match when={props.questions.error}>
 					<FetchError error={props.questions.error} />
 				</Match>
-				<Match when={props.questions()}>
+				<Match when={props.questions() !== undefined}>
 					<For
 						each={props
 							.questions()
@@ -81,7 +86,11 @@ export default function Questions(props: QuestionsProps) {
 						{(question, idx) => {
 							const bgColor = idx() % 2 ? "$neutral2" : "$loContrast";
 							return (
-								<Box bgColor={bgColor}>
+								<Box
+									bgColor={bgColor}
+									paddingLeft={{ "@initial": "none", "@md": "$10" }}
+									paddingRight={{ "@initial": "none", "@md": "$10" }}
+								>
 									<FullQuestion
 										question={question}
 										num={idx() + 1 + startPageNum()}
@@ -94,7 +103,7 @@ export default function Questions(props: QuestionsProps) {
 					</For>
 					<Pagination
 						numOfPages={getNumberOfPages()}
-						numOfButtons={5}
+						numOfButtons={window.screen.availWidth < 800 ? 3 : 5}
 						onPageClick={onPageChange}
 						startingPage={getCurrPage()}
 					/>

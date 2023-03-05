@@ -26,7 +26,10 @@ export default function Header() {
 							cursor: "pointer",
 						}}
 					>
-						Past Years
+						Past
+						<Box as={"span"} color="$accent10">
+							Quest
+						</Box>
 					</Anchor>
 				</Heading>
 				<Heading p="$3" size={{ "@md": "3xl", "@initial": "xl" }}>
@@ -44,7 +47,7 @@ export default function Header() {
 				<Spacer />
 				<DarkModeToggle />
 			</Flex>
-			<Divider />
+			<Divider color="$accent10" />
 		</>
 	);
 }

@@ -12,8 +12,8 @@ export default function FullQuestion(props: FullQuestionProps) {
 			<VStack
 				alignItems="left"
 				spacing="2"
-				margin="$10"
-				padding="$10"
+				// margin="$1"
+				padding="$5"
 				bgColor={props.bgColor}
 			>
 				<Flex>

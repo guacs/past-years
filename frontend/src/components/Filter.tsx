@@ -155,6 +155,7 @@ export default function Filter(props: FilterProps) {
 				<Flex
 					flexDirection={{ "@initial": "column", "@md": "row" }}
 					justifyContent="space-evenly"
+					alignItems="start"
 				>
 					<FilterChoices
 						label={"Exams"}
@@ -179,9 +180,8 @@ export default function Filter(props: FilterProps) {
 					onClick={search}
 					type="submit"
 					maxW="$24"
-					marginLeft="$5"
 					marginTop="$5"
-					colorScheme="info"
+					colorScheme="accent"
 					variant={colorMode() === "light" ? "solid" : "subtle"}
 				>
 					Search
@@ -195,7 +195,7 @@ function FilterChoices<T extends string | number>(
 	props: FilterChoicesProps<T>,
 ) {
 	return (
-		<FormControl m="$5">
+		<FormControl marginTop="$5">
 			<Flex alignItems="center">
 				<FormLabel fontSize="$md" m="$2">
 					{props.label}

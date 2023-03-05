@@ -1,4 +1,4 @@
-import { HopeProvider } from "@hope-ui/solid";
+import { Box, HopeProvider } from "@hope-ui/solid";
 import { Router, useRoutes } from "@solidjs/router";
 
 import Header from "./layout/Header";
@@ -13,7 +13,9 @@ export default function App() {
 		<HopeProvider config={themeConfig}>
 			<Router>
 				<Header />
-				<Routes />
+				<Box minH="$containerMd">
+					<Routes />
+				</Box>
 				<Footer />
 			</Router>
 		</HopeProvider>
