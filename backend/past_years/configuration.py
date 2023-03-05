@@ -18,6 +18,8 @@ _LogLevel = Literal["trace", "debug", "info", "success", "warning", "error", "cr
 class _APIConfig(Struct):
     """The configuration related to the API."""
 
+    gh_repo_name: str
+    gh_repo_owner: str
     allow_origins: list[str] = []
 
 

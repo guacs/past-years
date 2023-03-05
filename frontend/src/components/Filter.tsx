@@ -1,8 +1,7 @@
 import {
-	Button,
+	Flex,
 	FormControl,
 	FormLabel,
-	HStack,
 	Input,
 	Select,
 	SelectContent,
@@ -14,32 +13,27 @@ import {
 	SelectPlaceholder,
 	SelectTrigger,
 	SelectValue,
-	Stack,
-	VStack,
 } from "@hope-ui/solid";
 import { Params, useSearchParams } from "@solidjs/router";
-import {
-	Accessor,
-	For,
-	Setter,
-	createResource,
-	createSignal,
-	onMount,
-} from "solid-js";
+import { For, Setter, createResource, createSignal, onMount } from "solid-js";
 import { fetchQuestionsMetadata } from "../api";
-import { QuestionsMetadata } from "../types";
 import { title } from "../utils";
 
 // ----- Props Interfaces/Types -----
 interface FilterProps {
+	/** The function to call with a new set of filters. */
 	onSearch: (filter: string) => void;
 }
 
-interface SelectChoicesProps<T> {
-	choices: T;
-	placeholder: string;
-	selectedValues: Accessor<T>;
-	handleOnChange: Setter<T>;
+interface FilterChoicesProps<T extends string | number> {
+	/** The label to give to the select choice. */
+	label: string;
+	/** The available options in the dropdown. */
+	choices: T[];
+	/** The selected values from the dropdown. */
+	selectedValues: T[];
+	/** Handling adding/removing selections from the dropdown. */
+	handleOnChange: Setter<T[]>;
 }
 
 // ----- Components -----
@@ -51,7 +45,8 @@ export default function Filter(props: FilterProps) {
 	const [subjects, setSubjects] = createSignal<string[]>([]);
 	const [years, setYears] = createSignal<string[]>([]);
 
-	const [choices] = createResource(fetchQuestionsMetadata, {
+	/** The available options in the filters. */
+	const [filterOptions] = createResource(fetchQuestionsMetadata, {
 		initialValue: {
 			exams: [],
 			subjects: [],
@@ -145,79 +140,76 @@ export default function Filter(props: FilterProps) {
 	}
 
 	return (
-		<VStack m="$10" alignItems="left">
-			<form onSubmit={search}>
-				<FormControl marginBottom="$3">
-					<Input
-						id="query"
-						value={query()}
-						onInput={(e) => setQuery(e.currentTarget.value)}
-					/>
-				</FormControl>
-				<Stack direction={{ "@initial": "column", "@md": "row" }} spacing={5}>
-					<FormControl>
-						<FormLabel fontSize="lg">Exams</FormLabel>
-						<SelectChoices
-							choices={choices().exams}
-							selectedValues={exams}
-							handleOnChange={setExams}
-							placeholder="Select an exam"
-						/>
-					</FormControl>
-					<FormControl>
-						<FormLabel fontSize="lg">Subjects</FormLabel>
-						<SelectChoices
-							choices={choices().subjects}
-							selectedValues={subjects}
-							handleOnChange={setSubjects}
-							placeholder="Select a subject"
-						/>
-					</FormControl>
-					<FormControl>
-						<FormLabel fontSize="lg">Years</FormLabel>
-						<SelectChoices
-							choices={choices().years}
-							selectedValues={years}
-							handleOnChange={setYears}
-							placeholder="Select a year"
-						/>
-					</FormControl>
-				</Stack>
-				<HStack>
-					<Button type="submit" margin="$5" variant="subtle">
-						Search
-					</Button>
-				</HStack>
-			</form>
-		</VStack>
+		<Flex m="$10" flexDirection="column">
+			<Input
+				id="query"
+				value={query()}
+				onInput={(e) => setQuery(e.currentTarget.value)}
+				placeholder="Search"
+				type="search"
+			/>
+			<Flex
+				flexDirection={{ "@initial": "column", "@md": "row" }}
+				justifyContent="space-evenly"
+			>
+				<FilterChoices
+					label={"Exams"}
+					choices={filterOptions().exams}
+					selectedValues={exams()}
+					handleOnChange={setExams}
+				/>
+				<FilterChoices
+					label={"Subjects"}
+					choices={filterOptions().subjects}
+					selectedValues={subjects()}
+					handleOnChange={setSubjects}
+				/>
+				<FilterChoices
+					label={"Years"}
+					choices={filterOptions().years}
+					selectedValues={years()}
+					handleOnChange={setYears}
+				/>
+			</Flex>
+		</Flex>
 	);
 }
 
-// TODO: Figure out how to style the selected values.
-function SelectChoices(props: SelectChoicesProps<string[] | number[]>) {
+function FilterChoices<T extends string | number>(
+	props: FilterChoicesProps<T>,
+) {
 	return (
-		<Select
-			multiple
-			value={props.selectedValues()}
-			onChange={props.handleOnChange}
-		>
-			<SelectTrigger>
-				<SelectPlaceholder>{props.placeholder}</SelectPlaceholder>
-				<SelectValue />
-				<SelectIcon rotateOnOpen={true} />
-			</SelectTrigger>
-			<SelectContent>
-				<SelectListbox>
-					<For each={props.choices}>
-						{(e) => (
-							<SelectOption value={e}>
-								<SelectOptionText>{e}</SelectOptionText>
-								<SelectOptionIndicator />
-							</SelectOption>
-						)}
-					</For>
-				</SelectListbox>
-			</SelectContent>
-		</Select>
+		<FormControl m="$5">
+			<Flex alignItems="center">
+				<FormLabel fontSize="$md" m="$2">
+					{props.label}
+				</FormLabel>
+				<Select
+					multiple
+					value={props.selectedValues}
+					onChange={props.handleOnChange}
+				>
+					<SelectTrigger>
+						<SelectPlaceholder>
+							Select {props.label.toLowerCase()}
+						</SelectPlaceholder>
+						<SelectValue />
+						<SelectIcon rotateOnOpen />
+						<SelectContent>
+							<SelectListbox>
+								<For each={props.choices}>
+									{(c) => (
+										<SelectOption value={c}>
+											<SelectOptionText>{c}</SelectOptionText>
+											<SelectOptionIndicator />
+										</SelectOption>
+									)}
+								</For>
+							</SelectListbox>
+						</SelectContent>
+					</SelectTrigger>
+				</Select>
+			</Flex>
+		</FormControl>
 	);
 }

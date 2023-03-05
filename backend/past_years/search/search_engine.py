@@ -2,6 +2,7 @@ import itertools
 from math import exp, floor, log
 from random import random, randrange
 from typing import Iterable
+from past_years.errors import QuestionNotFoundError
 from past_years.search.query_searcher import QuerySearcherProtocol
 from past_years.search.question_bank import QuestionBankProtocol
 from past_years.search.search_types import Filter, Question, QuestionsMetadata
@@ -15,6 +16,14 @@ class QuestionSearchEngine:
     ):
         self._qbank = question_bank
         self._qsearcher = query_searcher
+
+    def get_question(self, question_id: str) -> Question:
+        """Returns the question with the given question id."""
+
+        try:
+            return self._qbank[question_id]
+        except KeyError as ex:
+            raise QuestionNotFoundError(question_id) from ex
 
     def search(self, filter: Filter) -> list[Question]:
         """Searches for questions based on the given filter."""
