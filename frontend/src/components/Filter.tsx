@@ -1,4 +1,5 @@
 import {
+	Button,
 	Flex,
 	FormControl,
 	FormLabel,
@@ -13,6 +14,7 @@ import {
 	SelectPlaceholder,
 	SelectTrigger,
 	SelectValue,
+	useColorMode,
 } from "@hope-ui/solid";
 import { Params, useSearchParams } from "@solidjs/router";
 import { For, Setter, createResource, createSignal, onMount } from "solid-js";
@@ -45,6 +47,7 @@ export default function Filter(props: FilterProps) {
 	const [subjects, setSubjects] = createSignal<string[]>([]);
 	const [years, setYears] = createSignal<string[]>([]);
 
+	const { colorMode } = useColorMode();
 	/** The available options in the filters. */
 	const [filterOptions] = createResource(fetchQuestionsMetadata, {
 		initialValue: {
@@ -140,38 +143,51 @@ export default function Filter(props: FilterProps) {
 	}
 
 	return (
-		<Flex m="$10" flexDirection="column">
-			<Input
-				id="query"
-				value={query()}
-				onInput={(e) => setQuery(e.currentTarget.value)}
-				placeholder="Search"
-				type="search"
-			/>
-			<Flex
-				flexDirection={{ "@initial": "column", "@md": "row" }}
-				justifyContent="space-evenly"
-			>
-				<FilterChoices
-					label={"Exams"}
-					choices={filterOptions().exams}
-					selectedValues={exams()}
-					handleOnChange={setExams}
+		<form onSubmit={search}>
+			<Flex m="$10" flexDirection="column">
+				<Input
+					id="query"
+					value={query()}
+					onInput={(e) => setQuery(e.currentTarget.value)}
+					placeholder="Search"
+					type="search"
 				/>
-				<FilterChoices
-					label={"Subjects"}
-					choices={filterOptions().subjects}
-					selectedValues={subjects()}
-					handleOnChange={setSubjects}
-				/>
-				<FilterChoices
-					label={"Years"}
-					choices={filterOptions().years}
-					selectedValues={years()}
-					handleOnChange={setYears}
-				/>
+				<Flex
+					flexDirection={{ "@initial": "column", "@md": "row" }}
+					justifyContent="space-evenly"
+				>
+					<FilterChoices
+						label={"Exams"}
+						choices={filterOptions().exams}
+						selectedValues={exams()}
+						handleOnChange={setExams}
+					/>
+					<FilterChoices
+						label={"Subjects"}
+						choices={filterOptions().subjects}
+						selectedValues={subjects()}
+						handleOnChange={setSubjects}
+					/>
+					<FilterChoices
+						label={"Years"}
+						choices={filterOptions().years}
+						selectedValues={years()}
+						handleOnChange={setYears}
+					/>
+				</Flex>
+				<Button
+					onClick={search}
+					type="submit"
+					maxW="$24"
+					marginLeft="$5"
+					marginTop="$5"
+					colorScheme="info"
+					variant={colorMode() === "light" ? "solid" : "subtle"}
+				>
+					Search
+				</Button>
 			</Flex>
-		</Flex>
+		</form>
 	);
 }
 
