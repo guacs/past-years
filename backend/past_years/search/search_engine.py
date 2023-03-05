@@ -80,6 +80,6 @@ class QuestionSearchEngine:
         hits = self._qbank.filter(filter)
         if filter.q:
             qsearch_hits = self._qsearcher.search(filter.q)
-            hits.union(qsearch_hits)
+            hits.intersection_update(qsearch_hits)
 
         return hits
