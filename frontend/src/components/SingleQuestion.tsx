@@ -9,7 +9,13 @@ import { Show } from "solid-js";
 export default function FullQuestion(props: FullQuestionProps) {
 	return (
 		<>
-			<VStack alignItems="left" spacing="2">
+			<VStack
+				alignItems="left"
+				spacing="2"
+				margin="$10"
+				padding="$10"
+				bgColor={props.bgColor}
+			>
 				<Flex>
 					<Text marginRight="$2" fontSize="medium" as={"p"}>
 						{props.num}.
@@ -20,7 +26,6 @@ export default function FullQuestion(props: FullQuestionProps) {
 					<QuestionMetadata question={props.question} />
 				</Show>
 			</VStack>
-			<Divider marginTop="$4" marginBottom="$4" />
 		</>
 	);
 }

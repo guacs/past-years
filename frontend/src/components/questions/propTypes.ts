@@ -13,4 +13,5 @@ export interface QuestionProps {
 export interface FullQuestionProps extends QuestionProps {
 	num: number; // The question number
 	showMetadata?: boolean;
+	bgColor: string;
 }

@@ -62,10 +62,12 @@ export default function Questions(props: QuestionsProps) {
 	}
 
 	return (
-		<Box margin="$10">
+		<Box>
 			<Switch>
 				<Match when={props.questions.loading}>
-					<LoadingQuestions />
+					<Box margin="$10" padding="$10">
+						<LoadingQuestions />
+					</Box>
 				</Match>
 				<Match when={props.questions.error}>
 					<FetchError error={props.questions.error} />
@@ -76,13 +78,19 @@ export default function Questions(props: QuestionsProps) {
 							.questions()
 							?.slice(startPageNum(), startPageNum() + QUESTIONS_PER_PAGE)}
 					>
-						{(question, idx) => (
-							<FullQuestion
-								question={question}
-								num={idx() + 1 + startPageNum()}
-								showMetadata
-							/>
-						)}
+						{(question, idx) => {
+							const bgColor = idx() % 2 ? "$neutral2" : "$loContrast";
+							return (
+								<Box bgColor={bgColor}>
+									<FullQuestion
+										question={question}
+										num={idx() + 1 + startPageNum()}
+										showMetadata
+										bgColor={bgColor}
+									/>
+								</Box>
+							);
+						}}
 					</For>
 					<Pagination
 						numOfPages={getNumberOfPages()}
