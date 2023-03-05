@@ -4,6 +4,7 @@ import { Router, useRoutes } from "@solidjs/router";
 import Header from "./layout/Header";
 import routes from "./routes";
 import themeConfig from "./theme";
+import Footer from "./layout/Footer";
 
 const Routes = useRoutes(routes);
 
@@ -13,6 +14,7 @@ export default function App() {
 			<Router>
 				<Header />
 				<Routes />
+				<Footer />
 			</Router>
 		</HopeProvider>
 	);
