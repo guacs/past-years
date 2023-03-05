@@ -10,3 +10,12 @@ export function title(s: string): string {
 	);
 	return capitalizedWords.join(" ");
 }
+
+/** Returns an array of numbers with the given start and end ranges.
+ *
+ * @param stop - The exclusive end of the range.
+ * @param start - The inclusive start of the range.
+ */
+export function range(stop: number, start: number = 0) {
+	return Array.from({ length: stop - start }, (_, index) => start + index);
+}

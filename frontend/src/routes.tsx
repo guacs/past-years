@@ -14,7 +14,7 @@ const routes: RouteDefinition[] = [
 		component: HomePage,
 	},
 	{
-		path: "/questions",
+		path: "/questions/:pageNum?",
 		component: QuestionsPage,
 	},
 	{
