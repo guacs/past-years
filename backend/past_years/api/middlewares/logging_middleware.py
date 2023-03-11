@@ -2,10 +2,10 @@ import time
 from typing import Any
 from uuid import uuid1
 
-from past_years.api.request import Request
 from falcon import Response
 from loguru import logger
 
+from past_years.api.request import Request
 from past_years.context import ctx
 
 START_TIME = "start-time"

@@ -1,6 +1,7 @@
 from typing import Literal
-from falcon import Request as FalconRequest
+
 from falcon import MEDIA_JSON, MEDIA_MSGPACK
+from falcon import Request as FalconRequest
 
 from .request_context import RequestContext
 

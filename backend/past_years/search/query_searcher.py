@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 from typing import Protocol
-from whoosh.index import open_dir
-from whoosh.qparser import QueryParser, OrGroup, MultifieldParser
-from whoosh import qparser
+
 from loguru import logger
+from whoosh import qparser
+from whoosh.index import open_dir
+from whoosh.qparser import MultifieldParser, OrGroup, QueryParser
 
 
 class QuerySearcherProtocol(Protocol):

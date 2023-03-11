@@ -1,8 +1,9 @@
-from falcon import Response, HTTPNotFound
+import msgspec
+from falcon import HTTPNotFound, Response
+
 from past_years.api.request import Request
 from past_years.errors import QuestionNotFoundError
-from past_years.search import QuestionSearchEngine, Filter
-import msgspec
+from past_years.search import Filter, QuestionSearchEngine
 
 
 class QuestionsEndpoint:

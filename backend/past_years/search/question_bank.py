@@ -4,16 +4,16 @@ from pathlib import Path
 from typing import Iterable, Iterator, Protocol
 
 import msgspec
+from loguru import logger
 
 from .search_types import (
     Exam,
-    Question,
     Filter,
+    Question,
     QuestionsIndex,
     QuestionsMetadata,
     Subject,
 )
-from loguru import logger
 
 
 class QuestionBankProtocol(Protocol):

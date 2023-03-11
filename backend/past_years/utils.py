@@ -1,8 +1,9 @@
 """Utilities common to the entire application."""
 import sys
+
 from loguru import logger
 
-from past_years.configuration import config, _LogConfig
+from past_years.configuration import _LogConfig, config
 
 
 def configure_logger(log_config: _LogConfig | None = None):

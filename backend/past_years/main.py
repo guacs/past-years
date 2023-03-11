@@ -1,15 +1,14 @@
 from typing import Any
 from wsgiref.simple_server import WSGIRequestHandler
+
+import dotenv
+from api import make_app
 from falcon import App
 from loguru import logger
-
-from api import make_app
 from utils import configure_logger
-import dotenv
 
 
 def initialize_application() -> App:
-
     dotenv.load_dotenv()
     configure_logger()
     return make_app()

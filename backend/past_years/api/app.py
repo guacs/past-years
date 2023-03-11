@@ -1,18 +1,17 @@
 import os
 from typing import Any
-from falcon import App, MEDIA_MSGPACK, MEDIA_JSON, CORSMiddleware
 
+from falcon import MEDIA_JSON, MEDIA_MSGPACK, App, CORSMiddleware
 
-from past_years.api.handlers import JSONHandler
-from past_years.api.middlewares import LogRequestMiddleware, CompressionMiddleware
+from past_years.api.endpoints import IncorrectQuestionEndpoint, QuestionsEndpoint
+from past_years.api.handlers import JSONHandler, MsgPackHandler
+from past_years.api.middlewares import CompressionMiddleware, LogRequestMiddleware
+from past_years.api.request import Request
+from past_years.configuration import config
 from past_years.github.gh_client import GithubClient
 from past_years.incorrect.incorrect_question import IncorrectQuestionsHandler
 from past_years.search.factories import QuerySearcherFactory, QuestionBankFactory
 from past_years.search.search_engine import QuestionSearchEngine
-from past_years.configuration import config
-from past_years.api.endpoints import QuestionsEndpoint, IncorrectQuestionEndpoint
-from past_years.api.request import Request
-from past_years.api.handlers import MsgPackHandler
 
 
 def make_app() -> App:
@@ -59,7 +58,6 @@ def _get_middlwares() -> list[Any]:
 
 
 def _get_incorrect_question_handler() -> IncorrectQuestionsHandler:
-
     pat: str = os.environ.get("GH_ISSUES_PAT")
     assert pat, f"PAT was {pat}"
 

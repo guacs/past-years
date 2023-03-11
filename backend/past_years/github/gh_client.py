@@ -1,8 +1,6 @@
-from typing import Generator, Iterable
+from typing import Any, Generator, Iterable
 
 import httpx
-from typing import Any
-
 from loguru import logger
 
 

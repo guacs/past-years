@@ -1,6 +1,6 @@
-from .search_types import Exam, Subject, Question, Filter
-from .factories import QuestionBankFactory, QuerySearcherFactory
+from .factories import QuerySearcherFactory, QuestionBankFactory
 from .search_engine import QuestionSearchEngine
+from .search_types import Exam, Filter, Question, Subject
 
 __all__ = [
     "Exam",

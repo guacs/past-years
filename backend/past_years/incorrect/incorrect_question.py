@@ -1,10 +1,11 @@
 from typing import Any, NamedTuple
-from past_years.github.gh_client import GithubClient
+
 from loguru import logger
+
+from past_years.github.gh_client import GithubClient
 
 
 class CachedIssueDetails(NamedTuple):
-
     issue_number: int
     issue_url: str
 

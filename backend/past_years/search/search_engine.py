@@ -2,6 +2,7 @@ import itertools
 from math import exp, floor, log
 from random import random, randrange
 from typing import Iterable
+
 from past_years.errors import QuestionNotFoundError
 from past_years.search.query_searcher import QuerySearcherProtocol
 from past_years.search.question_bank import QuestionBankProtocol

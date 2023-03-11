@@ -2,12 +2,11 @@
 
 from typing import Literal
 
+from loguru import logger
 
+from ..configuration import config
 from .query_searcher import QuerySearcherProtocol, WhooshSearcher
 from .question_bank import QuestionBank, QuestionBankProtocol
-from ..configuration import config
-
-from loguru import logger
 
 
 class QuestionBankFactory:

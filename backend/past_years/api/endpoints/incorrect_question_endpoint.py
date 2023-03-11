@@ -1,9 +1,10 @@
 from typing import TypedDict
-from past_years.api.request import Request
-from falcon import Response, HTTPNotFound, HTTPBadRequest
 
-from past_years.incorrect import IncorrectQuestionsHandler
 import msgspec
+from falcon import HTTPBadRequest, HTTPNotFound, Response
+
+from past_years.api.request import Request
+from past_years.incorrect import IncorrectQuestionsHandler
 
 # ----- Constants -----
 
@@ -13,7 +14,6 @@ ISSUE_URL_CACHE_TIME = 60 * 60 * 24 * 30 * 6
 
 
 class IncorrectQuestionRequestBody(TypedDict):
-
     comments: str
 
 
@@ -21,7 +21,6 @@ class IncorrectQuestionEndpoint:
     """Handles all requests to /incorrect-question."""
 
     def __init__(self, incorrect_question_handler: IncorrectQuestionsHandler):
-
         self._incorrect_qstn_handler = incorrect_question_handler
 
     def on_get(self, req: Request, resp: Response, question_id: str):

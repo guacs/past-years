@@ -1,8 +1,8 @@
 from typing import Any
-from falcon.media import BaseHandler
-import falcon
 
+import falcon
 import msgspec
+from falcon.media import BaseHandler
 
 
 class MsgPackHandler(BaseHandler):
