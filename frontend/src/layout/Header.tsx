@@ -13,25 +13,41 @@ import { FaSolidMoon } from "solid-icons/fa";
 import { IoSunnyOutline } from "solid-icons/io";
 
 export default function Header() {
+	// TODO: Get a logo for this somehow.
 	return (
 		<>
-			<Flex as="nav" alignItems="center" m={10} p={10}>
-				<Heading p="$3" size={{ "@md": "5xl", "@initial": "3xl" }}>
-					<Anchor as={A} href="/">
-						CSE
+			<Flex as="nav" alignItems="center" p={10}>
+				<Heading p="$3" size={{ "@md": "3xl", "@initial": "3xl" }}>
+					<Anchor
+						as={A}
+						href="/"
+						_hover={{
+							textDecoration: "none",
+							cursor: "pointer",
+						}}
+					>
+						Past
+						<Box as={"span"} color="$accent10">
+							Quest
+						</Box>
 					</Anchor>
 				</Heading>
-				<Box>
-					<Heading p="$3" size={{ "@md": "3xl", "@initial": "xl" }}>
-						<Anchor as={A} href="/questions">
-							PYQs
-						</Anchor>
-					</Heading>
-				</Box>
+				<Heading p="$3" size={{ "@md": "3xl", "@initial": "xl" }}>
+					<Anchor
+						_hover={{
+							textDecoration: "none",
+							cursor: "pointer",
+						}}
+						as={A}
+						href="/questions"
+					>
+						PYQs
+					</Anchor>
+				</Heading>
 				<Spacer />
 				<DarkModeToggle />
 			</Flex>
-			<Divider />
+			<Divider color="$accent10" />
 		</>
 	);
 }

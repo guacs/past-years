@@ -83,6 +83,7 @@ export default function Pagination(props: PaginationProps) {
 				variant="ghost"
 				onClick={() => handleNewPageClick(0)}
 				disabled={currPageNum() === 0}
+				colorScheme="accent"
 				_focus={buttonFocusStyle}
 			>
 				{"<<"}
@@ -93,6 +94,7 @@ export default function Pagination(props: PaginationProps) {
 				variant="ghost"
 				onClick={goToPrevPage}
 				disabled={currPageNum() === 0}
+				colorScheme="accent"
 				_focus={buttonFocusStyle}
 			>
 				{"<"}
@@ -104,6 +106,7 @@ export default function Pagination(props: PaginationProps) {
 						variant={currPageNum() === pageNum() ? "subtle" : "ghost"}
 						borderRadius="$full"
 						margin="$2"
+						colorScheme="accent"
 						_focus={buttonFocusStyle}
 					>
 						{pageNum() + 1}
@@ -117,6 +120,7 @@ export default function Pagination(props: PaginationProps) {
 				onClick={goToNextPage}
 				disabled={currPageNum() === props.numOfPages - 1}
 				_focus={buttonFocusStyle}
+				colorScheme="accent"
 			>
 				{">"}
 			</Button>
@@ -127,6 +131,7 @@ export default function Pagination(props: PaginationProps) {
 				onClick={() => handleNewPageClick(props.numOfPages - 1)}
 				disabled={currPageNum() === props.numOfPages - 1}
 				_focus={buttonFocusStyle}
+				colorScheme="accent"
 			>
 				{">>"}
 			</Button>
