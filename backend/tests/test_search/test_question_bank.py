@@ -1,9 +1,8 @@
 from typing import Iterable
 
 from past_years.search import Exam, Question, Subject
-from past_years.search.search_types import Filter
 from past_years.search.question_bank import QuestionBank
-
+from past_years.search.search_types import Filter
 
 # ----- Helpers -----
 

@@ -1,16 +1,18 @@
 """The CLI for the dev tools for the website."""
 
+import os
 from pathlib import Path
-
-import msgspec
-from dev.random_data import RandomQuestionGenerator
-from past_years.configuration import _Config, _LogLevel
-from past_years.utils import configure_logger
+from typing import Iterable
 
 import click
-
-from past_years.errors import InvalidConfigFileError
+import msgspec
 from index import create_questions_index, create_whoosh_index
+
+from dev.db import delete_table, reset_user_table
+from dev.random_data import RandomQuestionGenerator
+from past_years.configuration import _Config, _LogLevel
+from past_years.errors import InvalidConfigFileError
+from past_years.utils import configure_logger
 
 # ----- Global Values -----
 logger_configured: bool = False
@@ -46,6 +48,9 @@ def run(ctx: click.Context, config: str, verbosity: int):
         ctx.abort()
 
 
+# ----- Index related commands -----
+
+
 @run.group()
 @click.option(
     "-v",
@@ -70,7 +75,7 @@ def index(verbosity: int):
     count=True,
     help="The verbosity level. This can be repeated for increased verbosity.",
 )
-def questions(verbosity: int, questions_fp: str, index_fp: str):
+def questions(verbosity: int, questions_fp: str | Path, index_fp: str | Path):
     """Indexes the questions (NOT Whoosh)."""
 
     _configure_logger(verbosity)
@@ -97,7 +102,11 @@ def questions(verbosity: int, questions_fp: str, index_fp: str):
     help="The verbosity level. This can be repeated for increased verbosity.",
 )
 def whoosh(
-    questions_fp: str, index_fp: str, index_name: str, reset: bool, verbosity: int
+    questions_fp: str | Path,
+    index_fp: str | Path,
+    index_name: str,
+    reset: bool,
+    verbosity: int,
 ):
     """Indexes the questions with Whoosh."""
 
@@ -112,6 +121,46 @@ def whoosh(
 
     create_whoosh_index(index_fp, questions_fp, index_name, reset)
     click.secho("Created the index successfully!", fg="green")
+
+
+# ----- Database related commands -----
+@run.group
+@click.option("--username", "-u", help="The username to connect to the database.")
+@click.option("--password", "-p", help="The password to connect to the database.")
+def db(username: str | None, password: str | None):
+    """All commands related to the MySQL database."""
+
+    if username:
+        os.environ.setdefault("PAST_YEARS_DB_USERNAME", username)
+    if password:
+        os.environ.setdefault("PAST_YEARS_DB_PWD", password)
+
+
+@db.command(name="reset")
+@click.argument("table-name", type=click.Choice(("users",)))
+def reset_table(table_name: str):
+    """Resets the given table."""
+
+    if table_name == "users":
+        reset_user_table()
+
+    click.secho(f"Reset the `{table_name}` table :)", fg="green")
+
+
+@db.command
+@click.argument("table-names", nargs=-1)
+@click.confirmation_option("--yes", "-y")
+def drop(table_names: Iterable[str]):
+    """Drops the table for all the given tables."""
+
+    for name in table_names:
+        delete_table(name)
+        click.secho(f"Deleted the `{name}` table", fg="magenta")
+
+    click.secho("Deleted all the tables :)", fg="green")
+
+
+# ----- Miscellaneous -----
 
 
 @run.command(name="random")

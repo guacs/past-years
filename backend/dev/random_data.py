@@ -3,8 +3,9 @@ from pathlib import Path
 from random import choice, choices, randint
 from typing import Generator
 
-from msgspec import Struct
 import msgspec
+from msgspec import Struct
+
 from past_years.search.question_bank import QuestionBank
 from past_years.search.search_types import Exam, Question, Subject
 

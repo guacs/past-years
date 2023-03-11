@@ -1,17 +1,18 @@
 """Handles all the indexing of the questions."""
 
-from pathlib import Path
 import time
+from pathlib import Path
 from typing import Iterable
-from loguru import logger
-from whoosh.analysis import StemmingAnalyzer
-from whoosh.fields import STORED, TEXT, Schema
-from whoosh import index
 
 import msgspec
 from errors import IndexExistsError
-from past_years.search.question_bank import QuestionBank
+from loguru import logger
+from whoosh import index
+from whoosh.analysis import StemmingAnalyzer
+from whoosh.fields import STORED, TEXT, Schema
+
 from past_years.search import Question
+from past_years.search.question_bank import QuestionBank
 from past_years.search.search_types import QuestionsIndex
 
 

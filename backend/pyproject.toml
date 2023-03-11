@@ -14,6 +14,7 @@ whoosh = "^2.7.4"
 falcon = "^3.1.1"
 python-dotenv = "^1.0.0"
 httpx = "^0.23.3"
+mysql-connector-python = "^8.0.32"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.1.0"
@@ -24,7 +25,13 @@ pytest = "^7.2.1"
 
 [tool.ruff]
 fix = true
+select = [
+    # isort
+    "I001",
 
+    # remove unused imports
+    "F401",
+]
 
 [build-system]
 requires = ["poetry-core"]

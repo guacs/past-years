@@ -17,7 +17,7 @@ repos:
     rev: 'v0.0.252'
     hooks:
       - id: ruff
-        args: ["--config", "./backend/pyproject.toml", "backend"]
+        args: ["check", "--select", "I001,F401", "--fix", "./backend"]
         require_serial: true
   - repo: https://github.com/psf/black
     rev: 22.10.0

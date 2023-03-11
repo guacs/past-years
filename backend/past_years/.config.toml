@@ -59,3 +59,16 @@ format = ""
 log_level = "info"
 serialize = false
 sink = "../../logs/prod.log"
+
+# Database related configurations
+[dev.db]
+db_name = "past_years"
+host = "localhost"
+
+[test.db]
+db_name = "test_past_years"
+host = "localhost"
+
+[prod.db]
+db_name = "past_years"
+host = ""

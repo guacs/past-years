@@ -31,3 +31,19 @@ class QuestionNotFoundError(PastYearsError):
     def __init__(self, question_id: str) -> None:
         self.question_id = question_id
         super().__init__(f"Question with id `{question_id}` was not found")
+
+
+class UserNotFoundError(PastYearsError):
+    """Raised when a user is not found."""
+
+    def __init__(self, user_id: str) -> None:
+        self.user_id = user_id
+        super().__init__(f"User with id `{user_id}` was not found")
+
+
+class UserWithEmailExistsError(PastYearsError):
+    """Raised when a user with the given email exists."""
+
+    def __init__(self) -> None:
+
+        super().__init__("User with email already exists")

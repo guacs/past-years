@@ -1,18 +1,26 @@
 """Holds the config related items."""
 from __future__ import annotations
-from copy import copy
-import os
-from pathlib import Path
 
+import os
+from copy import copy
+from pathlib import Path
 from typing import Any, Generator, Literal, Type
-from msgspec import Struct
+
 import msgspec
+from msgspec import Struct
 
 from past_years.errors import ConfigNotFoundError, InvalidConfigFileError
 
 _LogLevel = Literal["trace", "debug", "info", "success", "warning", "error", "critical"]
 
 # ----- Config classes -----
+
+
+class _DBConfig(Struct):
+    """The configuration related to the database."""
+
+    db_name: str
+    host: str
 
 
 class _APIConfig(Struct):
@@ -77,6 +85,7 @@ class _CommonConfig(Struct):
     questions: _QuestionsConfig
     logs: _LogConfig
     api: _APIConfig
+    db: _DBConfig
 
     def normalize_paths(self, fp: Path):
         """Normalizes all the relative paths into absolute paths."""
@@ -127,6 +136,11 @@ class _Config(Struct):
         """Returns the API config based on the current mode."""
 
         return self._get_config().api
+
+    def get_db_config(self) -> _DBConfig:
+        """Returns the database config based on the current mode."""
+
+        return self._get_config().db
 
     def _get_config(self) -> _DevConfig | _ProdConfig | _TestConfig:
         """Gets the dev/prod/test config based on the current mode."""

@@ -1,6 +1,7 @@
 """Tests all the factories in `search`."""
 import pytest
-from past_years.search import QuestionBankFactory, QuerySearcherFactory
+
+from past_years.search import QuerySearcherFactory, QuestionBankFactory
 from past_years.search.query_searcher import WhooshSearcher
 from past_years.search.question_bank import QuestionBank
 

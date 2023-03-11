@@ -1,0 +1,32 @@
+[
+    {
+        "user_id": "1",
+        "display_name": "Shruti",
+        "email": "shruti@gmail.com",
+        "password": "shruti-password"
+    },
+    {
+        "user_id": "2",
+        "display_name": "Ankita",
+        "email": "ankita@yahoo.com",
+        "password": "ankita-password"
+    },
+    {
+        "user_id": "3",
+        "display_name": "Shubham",
+        "email": "shubham@hotmail.com",
+        "password": "shubham-password"
+    },
+    {
+        "user_id": "4",
+        "display_name": "Pradeep",
+        "email": "pradeep@outlook.com",
+        "password": "pradeep-password"
+    },
+    {
+        "user_id": "5",
+        "display_name": "Kanashk",
+        "email": "kanashk@adobe.com",
+        "password": "kanashk-password"
+    }
+]
