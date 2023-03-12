@@ -4,10 +4,14 @@ from typing import Any
 from falcon import MEDIA_JSON, MEDIA_MSGPACK, App, CORSMiddleware
 
 from past_years.api.endpoints import IncorrectQuestionEndpoint, QuestionsEndpoint
+from past_years.api.endpoints.login_endpoint import LoginEndpoint
 from past_years.api.handlers import JSONHandler, MsgPackHandler
 from past_years.api.middlewares import CompressionMiddleware, LogRequestMiddleware
 from past_years.api.request import Request
+from past_years.auth import TokenServiceMySql, TokenServiceProtocol
 from past_years.configuration import config
+from past_years.db.db import MySqlDB
+from past_years.db.users_db import UsersDBMySql, UsersDBProtocol
 from past_years.github.gh_client import GithubClient
 from past_years.incorrect.incorrect_question import IncorrectQuestionsHandler
 from past_years.search.factories import QuerySearcherFactory, QuestionBankFactory
@@ -22,10 +26,15 @@ def make_app() -> App:
     # Creating endpoints
     search_engine = _get_search_engine()
     incorrect_qstn_handler = _get_incorrect_question_handler()
+    user_db = _get_users_db()
     questions_endpoint = QuestionsEndpoint(search_engine)
     incorrect_question_endpoint = IncorrectQuestionEndpoint(incorrect_qstn_handler)
+    login_endpoint = LoginEndpoint(user_db, _get_token_service())
 
     # Adding routes
+    app.add_route("/login", login_endpoint)
+    app.add_route("/logout/{user_id}", login_endpoint, suffix="logout")
+    app.add_route("/refresh", login_endpoint, suffix="refresh")
     app.add_route("/questions/{question_id}", questions_endpoint)
     app.add_route("/questions/filter", questions_endpoint, suffix="filter")
     app.add_route("/questions/random", questions_endpoint, suffix="random")
@@ -58,7 +67,7 @@ def _get_middlwares() -> list[Any]:
 
 
 def _get_incorrect_question_handler() -> IncorrectQuestionsHandler:
-    pat: str = os.environ.get("GH_ISSUES_PAT")
+    pat: str = os.environ["GH_ISSUES_PAT"]
     assert pat, f"PAT was {pat}"
 
     api_config = config.get_api_config()
@@ -72,3 +81,29 @@ def _get_search_engine() -> QuestionSearchEngine:
     qs = QuerySearcherFactory().get_query_searcher("questions", "whoosh")
 
     return QuestionSearchEngine(qb, qs)
+
+
+_db: MySqlDB | None = None
+
+
+def _get_users_db() -> UsersDBProtocol:
+    db = _get_db()
+    assert db is _db
+    return UsersDBMySql(db)
+
+
+def _get_token_service() -> TokenServiceProtocol:
+    db = _get_db()
+    assert db is _db
+    return TokenServiceMySql(db)
+
+
+def _get_db() -> MySqlDB:
+    global _db
+
+    if _db:
+        return _db
+
+    db_config = config.get_db_config()
+    _db = MySqlDB(db_config.db_name, db_config.host)
+    return _db

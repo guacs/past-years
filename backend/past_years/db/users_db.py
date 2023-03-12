@@ -4,7 +4,7 @@ from uuid import uuid1
 from loguru import logger
 from mysql.connector import IntegrityError
 
-from past_years.auth_utils import Password
+from past_years.auth.auth_utils import Password
 from past_years.context import ctx
 from past_years.db.db import MySqlDB
 from past_years.db.schemas import User
@@ -14,12 +14,21 @@ from past_years.errors import UserNotFoundError, UserWithEmailExistsError
 class UsersDBProtocol(Protocol):
     """Handles all operations related to users."""
 
-    def get_user(self, user_id: str) -> User:
+    def get_user_with_id(self, user_id: str) -> User:
         """Returns the user with the given ID.
 
         Raises:
             UserNotFound: Raised if the user with the given
                 id was not found.
+        """
+        ...
+
+    def get_user_with_email(self, email: str) -> User:
+        """Returns the user with the given email address.
+
+        Raises:
+            UserNotFound: Raised if the user with the given email
+                was not found.
         """
         ...
 
@@ -75,8 +84,7 @@ class UsersDBMySql(UsersDBProtocol):
     def __init__(self, db: MySqlDB):
         self._db = db
 
-    def get_user(self, user_id: str) -> User:
-
+    def get_user_with_id(self, user_id: str) -> User:
         logger.debug(f"Getting user `{user_id}`", request_id=ctx.request_id)
 
         query = "SELECT display_name, email FROM users WHERE user_id=%s"
@@ -93,8 +101,24 @@ class UsersDBMySql(UsersDBProtocol):
             email=user_details[1],
         )
 
-    def get_user_password(self, user_id: str) -> Password:
+    def get_user_with_email(self, email: str) -> User:
+        logger.debug(f"Getting user with email", request_id=ctx.request_id)
 
+        query = "SELECT user_id, display_name FROM users WHERE email=%s"
+        result = self._db.execute_and_fetch_one(query, (email,))
+        user_details: UserDBReturnType = cast(UserDBReturnType, result)
+
+        if not user_details:
+            logger.error(f"User was not found", request_id=ctx.request_id)
+            raise UserNotFoundError(email)
+
+        return User(
+            user_id=user_details[0],
+            display_name=user_details[1],
+            email=email,
+        )
+
+    def get_user_password(self, user_id: str) -> Password:
         logger.debug(f"Getting password of user `{user_id}`", request_id=ctx.request_id)
 
         query = """SELECT hashed_pwd, salt FROM users WHERE user_id=%s"""
@@ -107,7 +131,6 @@ class UsersDBMySql(UsersDBProtocol):
         return Password(bytes(result[0]), bytes(result[1]))
 
     def add_user(self, user: User, password: Password) -> User:
-
         logger.info("Adding new user", request_id=ctx.request_id)
 
         # Checking if user with given email already exists
@@ -121,7 +144,6 @@ class UsersDBMySql(UsersDBProtocol):
         return self._add_user(user, password)
 
     def edit_user(self, user: User) -> None:
-
         logger.debug(f"Editing user `{user.user_id}`", request_id=ctx.request_id)
 
         query = """
@@ -137,7 +159,6 @@ class UsersDBMySql(UsersDBProtocol):
         self._db.execute(query, data)
 
     def edit_user_password(self, user_id: str, password: Password) -> None:
-
         logger.debug(f"Editing password of user `{user_id}`", request_id=ctx.request_id)
 
         query = """
@@ -153,7 +174,6 @@ class UsersDBMySql(UsersDBProtocol):
         self._db.execute(query, data)
 
     def delete_user(self, user_id: str) -> None:
-
         logger.debug(f"Deleting user `{user_id}`", request_id=ctx.request_id)
 
         query = "DELETE FROM users WHERE user_id=%s"
