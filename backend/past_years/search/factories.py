@@ -43,7 +43,7 @@ class QuerySearcherFactory:
             if type == "whoosh":
                 qstn_config = config.get_questions_config()
                 return WhooshSearcher(
-                    qstn_config.whoosh_index_dir,
+                    str(qstn_config.whoosh_index_dir),
                     qstn_config.whoosh_questions_index_name,
                     qstn_config.whoosh_questions_field_name,
                 )

@@ -16,6 +16,7 @@ python-dotenv = "^1.0.0"
 httpx = "^0.23.3"
 mysql-connector-python = "^8.0.32"
 pyjwt = "^2.6.0"
+dependency-injector = "^4.41.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.1.0"
