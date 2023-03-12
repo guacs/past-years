@@ -4,6 +4,8 @@ import os
 from hashlib import scrypt
 from typing import NamedTuple
 
+# ----- Password related helpers -----
+
 
 class Password(NamedTuple):
     """The result being returned after creating a hash of a password."""

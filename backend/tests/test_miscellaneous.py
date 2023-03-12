@@ -1,6 +1,6 @@
 """Tests that don't have a natural grouping."""
 
-from past_years.auth_utils import hash_password, valid_password
+from past_years.auth import hash_password, valid_password
 
 
 def test_valid_password():

@@ -37,13 +37,18 @@ class UserNotFoundError(PastYearsError):
     """Raised when a user is not found."""
 
     def __init__(self, user_id: str) -> None:
-        self.user_id = user_id
-        super().__init__(f"User with id `{user_id}` was not found")
+        self.user_id_or_email = user_id
+        super().__init__(f"User with id/email `{user_id}` was not found")
 
 
 class UserWithEmailExistsError(PastYearsError):
     """Raised when a user with the given email exists."""
 
     def __init__(self) -> None:
-
         super().__init__("User with email already exists")
+
+
+class InvalidTokenError(PastYearsError):
+    """Raised when the JWT is invalid."""
+
+    pass
