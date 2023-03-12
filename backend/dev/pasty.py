@@ -8,11 +8,12 @@ import click
 import msgspec
 from index import create_questions_index, create_whoosh_index
 
-from dev.db import delete_table, reset_user_table
+from dev.db import delete_table
 from dev.random_data import RandomQuestionGenerator
 from past_years.configuration import _Config, _LogLevel
 from past_years.errors import InvalidConfigFileError
 from past_years.utils import configure_logger
+from tests import setup
 
 # ----- Global Values -----
 logger_configured: bool = False
@@ -136,13 +137,23 @@ def db(username: str | None, password: str | None):
         os.environ.setdefault("PAST_YEARS_DB_PWD", password)
 
 
+@db.command(name="create")
+def create_db():
+    """Sets up the database."""
+
+    setup.setup_database()
+    for table_name in ("users", "tokens"):
+        setup.reset_table(table_name)
+
+    click.secho(f"Finished setting up the database :)")
+
+
 @db.command(name="reset")
-@click.argument("table-name", type=click.Choice(("users",)))
-def reset_table(table_name: str):
+@click.argument("table-name", type=click.Choice(("users", "tokens")))
+def reset_table(table_name: setup.TableNames):
     """Resets the given table."""
 
-    if table_name == "users":
-        reset_user_table()
+    setup.reset_table(table_name)
 
     click.secho(f"Reset the `{table_name}` table :)", fg="green")
 
