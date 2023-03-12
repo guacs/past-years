@@ -7,6 +7,8 @@ const QuestionsPage = lazy(() => import("./pages/QuestionsPage"));
 const ReportIncorrectQuestionPage = lazy(
 	() => import("./pages/ReportIncorrectQuestionPage"),
 );
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 
 const routes: RouteDefinition[] = [
 	{
@@ -21,6 +23,14 @@ const routes: RouteDefinition[] = [
 		path: "/incorrect-question/:id",
 		component: ReportIncorrectQuestionPage,
 		data: QuestionData,
+	},
+	{
+		path: "/login",
+		component: LoginPage,
+	},
+	{
+		path: "/sign-up",
+		component: SignUpPage,
 	},
 ];
 

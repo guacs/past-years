@@ -1,17 +1,5 @@
-import {
-	Box,
-	Button,
-	Center,
-	Flex,
-	Grid,
-	GridItem,
-	Heading,
-	SimpleGrid,
-	Text,
-} from "@hope-ui/solid";
+import { Box, Button, Flex, Heading, Text } from "@hope-ui/solid";
 import { useNavigate } from "@solidjs/router";
-
-import { FaSolidArrowRight } from "solid-icons/fa";
 
 export default function HomePage() {
 	const navigate = useNavigate();

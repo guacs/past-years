@@ -1,6 +1,11 @@
 import globalAxios from "axios";
 import camelcaseKeys from "camelcase-keys";
-import { Question, QuestionsMetadata } from "./types";
+import {
+	LoginEndpointResponse,
+	Question,
+	QuestionsMetadata,
+	User,
+} from "./types";
 import { title } from "./utils";
 
 // ----- Axios Configurations ------
@@ -17,6 +22,9 @@ const FILTERED_QUESTIONS = `${QUESTIONS}/filter` as const;
 const RANDOM = "/questions/random" as const;
 const QUESTIONS_METADATA = "/questions/metadata" as const;
 const INCORRECT_QUESTION = "/incorrect-question/" as const;
+const LOGIN = "/login" as const;
+const REFRESH = "/refresh" as const;
+const LOGOUT = "/logout" as const;
 
 // ----- API Calls -----
 /** Fetches the questions. */
@@ -76,6 +84,44 @@ export async function reportIncorrectQuestion(
 	const endpoint = INCORRECT_QUESTION + question_id;
 	const response = await axios.post<string>(endpoint, {
 		comments: comments,
+	});
+	return response.data;
+}
+
+export async function login(
+	email: string,
+	password: string,
+): Promise<LoginEndpointResponse> {
+	const response = await axios.post<LoginEndpointResponse>(
+		LOGIN,
+		{
+			email: email,
+			password: password,
+		},
+		{
+			withCredentials: true,
+		},
+	);
+	return camelcaseKeys(response.data, {
+		deep: true,
+	});
+}
+
+export async function logout(userId: string) {
+	await axios.get(`${LOGOUT}/${userId}`);
+}
+
+export async function signUp(email: string, name: string, password: string) {
+	await axios.post("/sign-up", {
+		email: email,
+		name: name,
+		password: password,
+	});
+}
+
+export async function fetchNewAccessToken(token: string) {
+	const response = await axios.post<string>(REFRESH, {
+		token: token,
 	});
 	return response.data;
 }

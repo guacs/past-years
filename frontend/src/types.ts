@@ -1,5 +1,7 @@
 /* The various interfaces/types used throughout the application. */
 
+import { JSX } from "solid-js";
+
 /** The interface for the answers in a single question. */
 export interface Answers {
 	a: string;
@@ -26,4 +28,18 @@ export interface QuestionsMetadata {
 	exams: string[];
 	years: string[];
 	subjects: string[];
+}
+
+/** Representation of a user. */
+export type User = {
+	userId: string;
+	displayName: string;
+	email: string;
+};
+
+/** The returned object from the '/login' endpoint.  */
+export interface LoginEndpointResponse {
+	refreshToken: string;
+	accessToken: string;
+	user: User;
 }
