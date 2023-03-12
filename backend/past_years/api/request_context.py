@@ -10,3 +10,6 @@ class RequestContext:
 
     request_start_time: int = 0
     """The time the request was started to be processed."""
+
+    user_id: str = ""
+    """The id of the user associated with the request."""
